@@ -28,4 +28,4 @@ Be sure that the following lines are in your
 [Purescript]: http://www.purescript.org
 [Pathogen]: https://github.com/tpope/vim-pathogen
 [idris-vim]: https://github.com/idris-hackers/idris-vim
-[idris-vim]: https://github.com/raichoo/haskell-vim
+[haskell-vim]: https://github.com/raichoo/haskell-vim
