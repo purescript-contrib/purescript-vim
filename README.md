@@ -1,7 +1,7 @@
 Purescript Syntax/Indentation
 =============================
 
-Syntax highlighting and indentation for [Purescript][] based on [idris-vim][].
+Syntax highlighting and indentation for [Purescript][] based on [idris-vim][] and [haskell-vim][].
 
 I hope you find this useful.
 
@@ -28,3 +28,4 @@ Be sure that the following lines are in your
 [Purescript]: http://www.purescript.org
 [Pathogen]: https://github.com/tpope/vim-pathogen
 [idris-vim]: https://github.com/idris-hackers/idris-vim
+[idris-vim]: https://github.com/raichoo/haskell-vim
