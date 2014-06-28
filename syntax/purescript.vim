@@ -9,16 +9,16 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn match purescriptModule "\<module\>"
-syn match purescriptImport "\(\<foreign\>\|\<import\>\|\<hiding\>\)"
+syn keyword purescriptModule module
+syn keyword purescriptImport foreign import hiding
 syn region purescriptQualifiedImport start="\<qualified\>" contains=purescriptType,purescriptDot end="\<as\>"
-syn match purescriptStructure "\<\(data\|type\|class\|instance\|where\)\>"
-syn match purescriptStatement "\<\(forall\|do\|case\|of\|let\|in\)\>"
-syn match purescriptConditional "\<\(if\|then\|else\)\>"
+syn keyword purescriptStructure data type class instance where
+syn keyword purescriptStatement forall do case of let in
+syn keyword purescriptConditional if then else
 syn match purescriptNumber "\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>"
 syn match purescriptFloat "\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
-syn match purescriptDelimiter  "(\|)\|\[\|\]\|,\|;\|{\|}"
-syn match purescriptInfix "\<\(infix\|infixl\|infixr\)\>"
+syn match purescriptDelimiter  "[(),;[\]{}]"
+syn keyword purescriptInfix infix infixl infixr
 syn match purescriptOperators "\([-!#$%&\*\+/<=>\?@\\^|~:]\|\<_\>\)"
 syn match purescriptDot "\."
 syn match purescriptType "\<\([A-Z][a-zA-Z0-9_]*\|_|_\)\>"
