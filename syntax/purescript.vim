@@ -12,7 +12,7 @@ endif
 syn keyword purescriptModule module
 syn keyword purescriptImport foreign import hiding
 syn region purescriptQualifiedImport start="\<qualified\>" contains=purescriptType,purescriptDot end="\<as\>"
-syn keyword purescriptStructure data newtype type class instance where
+syn keyword purescriptStructure data newtype type class instance derive where
 syn keyword purescriptStatement forall do case of let in
 syn keyword purescriptConditional if then else
 syn match purescriptNumber "\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>"
