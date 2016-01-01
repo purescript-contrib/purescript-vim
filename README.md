@@ -15,7 +15,7 @@ this repo into your `~/.vim/bundle` directory and you are ready to go.
 
 ### Manual Installation
 
-Copy content into your `~/.vim` directory.
+Copy content into your `~/.vim` directory (or `%HOME%\vimfiles` on Windows).
 
 Be sure that the following lines are in your
 `.vimrc`
