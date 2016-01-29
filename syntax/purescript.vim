@@ -29,9 +29,9 @@ syn region purescriptString start=+"+ skip=+\\\\\|\\"+ end=+"+
 syn region purescriptMultilineString start=+"""+ end=+"""+
 syn region purescriptBlockComment start="{-" end="-}" contains=purescriptBlockComment
 
-highlight def link purescriptImport Structure
-highlight def link purescriptQualifiedImport Structure
-highlight def link purescriptModule Structure
+highlight def link purescriptImport Keyword
+highlight def link purescriptQualifiedImport Keyword
+highlight def link purescriptModule Keyword
 highlight def link purescriptStructure Structure
 highlight def link purescriptStatement Statement
 highlight def link purescriptConditional Conditional
