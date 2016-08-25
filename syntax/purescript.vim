@@ -95,6 +95,9 @@ syn region purescriptClass start="^\<class\>" end="where"me=e-5
 syn region purescriptInstance start="^instance\>" end="where"me=e-5
   \ contains=purescriptStructure,purescriptIdentifier,purescriptOperatorType,purescriptType,purescriptTypeVar
   \ nextgroup=purescriptWhere
+syn region purescriptInstance start="^instance\>" end="$"
+  \ contains=purescriptStructure,purescriptIdentifier,purescriptOperatorType,purescriptType,purescriptTypeVar
+  \ nextgroup=purescriptWhere
 syn region purescriptDeriveInstance start="^derive\s\+instance\>" end="$"
   \ contains=purescriptStructure,purescriptInstanceKeyword,purescriptIdentifier,purescriptOperatorType,purescriptType,purescriptTypeVar
   \ nextgroup=purescriptWhere
