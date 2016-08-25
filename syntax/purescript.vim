@@ -21,6 +21,7 @@ syn region purescriptConstructorDecl matchgroup=purescriptConstructor start="\<[
   \ contains=purescriptType,purescriptTypeVar,purescriptDelimiter,purescriptBlockDelimiter,purescriptOperatorType,purescriptOperatorTypeSig
 
 syn match purescriptIdentifier "\<[_a-z]\w*\>" contained
+  \ nextgroup=purescriptIdentifier skipwhite
 syn region purescriptFunctionBody start="^\z(\s*\)[_a-z]\w*\s*.\+\(=\|$\)" end="^\z1\S"me=e-1 fold
   \ contains=purescriptNumber,purescriptFloat,purescriptConstructor,purescriptOperator,purescriptOperatorFunction,purescriptDelimiter,purescriptBlockDelimiter,purescriptConditional,purescriptStatement,purescriptWhere,purescriptChar,purescriptBacktick,purescriptString,purescriptMultilineString,purescriptLineComment,purescriptBlockComment,purescriptFunctionDecl,purescriptFunctionBody
 syn region purescriptFunctionDecl start="^\z(\s*\)\(foreign import\s\+\)\?[_a-z]\w*\s*\(::\|∷\)" end="^\z1\S"me=e-1 keepend
