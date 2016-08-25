@@ -11,24 +11,24 @@ endif
 
 syn match purescriptType "\<[A-Z]\w*\>"
   \ nextgroup=purescriptType,purescriptTypeVar,purescriptOperatorTypeSig,purescriptDelimiter,purescriptBlockDelimiter skipwhite
-syn match purescriptTypeVar "\<[_a-z]\w*\>" contained
+syn match purescriptTypeVar "\<[_a-z]\(\w\|\'\)*\>" contained
 syn region purescriptTypeExport matchgroup=purescriptType start="\<[A-Z]\(\S\&[^,.]\)*\>("rs=e-1 matchgroup=purescriptBlockDelimiter end=")" contained extend
   \ contains=purescriptConstructor,purescriptBlockDelimiter
 
 syn match purescriptConstructor "\<[A-Z]\w*\>"
   \ nextgroup=purescriptIdentifier skipwhite
-syn region purescriptConstructorDecl matchgroup=purescriptConstructor start="\<[A-Z]\w*\>" end="\(|\|$\)"me=e-1 contained
+syn region purescriptConstructorDecl matchgroup=purescriptConstructor start="\<[A-Z]\w*\>" end="\(|\|$\)"me=e-1,re=e-1 contained
   \ contains=purescriptType,purescriptTypeVar,purescriptDelimiter,purescriptBlockDelimiter,purescriptOperatorType,purescriptOperatorTypeSig
 
-syn match purescriptIdentifier "\<[_a-z]\w*\>" contained
+syn match purescriptIdentifier "\<[_a-z]\(\w\|\'\)*\>" contained
   \ nextgroup=purescriptIdentifier skipwhite
-syn region purescriptFunctionBody start="^\z(\s*\)[_a-z]\w*\s*.\+\(=\|$\)" end="^\z1\S"me=e-1 fold
+syn region purescriptFunctionBody excludenl start="^\z(\s*\)[_a-z]\(\w\|\'\)*\([^=]\{-}=\|\_.\{-}|\)" end="^\z1\?\S"me=s-1,re=s-1 fold keepend
   \ contains=purescriptNumber,purescriptFloat,purescriptConstructor,purescriptOperator,purescriptOperatorFunction,purescriptDelimiter,purescriptBlockDelimiter,purescriptConditional,purescriptStatement,purescriptWhere,purescriptChar,purescriptBacktick,purescriptString,purescriptMultilineString,purescriptLineComment,purescriptBlockComment,purescriptFunctionDecl,purescriptFunctionBody
-syn region purescriptFunctionDecl start="^\z(\s*\)\(foreign import\s\+\)\?[_a-z]\w*\s*\(::\|∷\)" end="^\z1\S"me=e-1 keepend
+syn region purescriptFunctionDecl start="^\z(\s*\)\(foreign import\s\+\)\?[_a-z]\(\w\|\'\)*\s*\(::\|∷\)" end="^\z1\?\S"me=s-1,re=s-1 keepend
   \ contains=purescriptFunctionDeclStart,purescriptOperatorType,purescriptOperatorTypeSig,purescriptType,purescriptTypeVar,purescriptBlockDelimiter,purescriptDelimiter,purescriptForall
-syn match purescriptFunctionDeclStart "^\(\s*\)\(foreign import\s\+\)\?[_a-z]\w*\s*\(::\|∷\)" contained
+syn match purescriptFunctionDeclStart "\(foreign import\s\+\)\?[_a-z]\(\w\|\'\)*\s*\(::\|∷\)" contained
   \ contains=purescriptImportKeyword,purescriptFunctionName,purescriptOperatorType
-syn match purescriptFunctionName "\<[_a-z]\w*\>" contained
+syn match purescriptFunctionName "\<[_a-z]\(\w\|\'\)*\>" contained
 syn match purescriptFunctionName "(\(\W\&[^(),\"]\)\+)" contained extend
 syn match purescriptForall "\(forall\|∀\)"
   \ nextgroup=purescriptTypeVar skipwhite
@@ -82,10 +82,10 @@ syn region purescriptDataConstructors start="" end="^\S"me=e-1 contained keepend
   \ contains=purescriptForall,purescriptConstructorDecl,purescriptTypeVar,purescriptDelimiter,purescriptBlockDelimiter,purescriptOperator,purescriptOperatorType,purescriptOperatorTypeSig
 syn region purescriptForeignData start="^foreign\s\+import\s\+data\>" end="$"
   \ contains=purescriptImportKeyword,purescriptStructure,purescriptType,purescriptOperatorType,purescriptOperator,purescriptOperatorTypeSig
-syn region purescriptNewtype start="^newtype" end="="he=e-1 keepend
+syn region purescriptNewtype start="^newtype" end="="he=e-1
   \ contains=purescriptStructure,purescriptType,purescriptTypeVar
   \ nextgroup=purescriptForall,purescriptConstructorDecl,purescriptTypeVar skipwhite skipnl
-syn region purescriptTypeAlias start="^type" end="="he=e-1 keepend
+syn region purescriptTypeAlias start="^type" end="="he=e-1
   \ contains=purescriptStructure,purescriptType,purescriptTypeVar
   \ nextgroup=purescriptForall,purescriptType,purescriptTypeVar skipwhite skipnl
 
