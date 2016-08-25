@@ -65,11 +65,11 @@ syn keyword purescriptInfix infix infixl infixr
 syn match purescriptNumber "[0-9]\+\|0[xX][0-9a-fA-F]\+\|0[oO][0-7]"
 syn match purescriptFloat "[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\="
 
+syn match purescriptOperator "\([-!#$%&\*\+/<=>\?@\\^|~:]\|\<_\>\)"
 syn match purescriptOperatorType "\(::\|∷\)" contained
   \ nextgroup=purescriptForall,purescriptType skipwhite skipempty
 syn match purescriptOperatorTypeSig "\(->\|<-\|=>\|<=\|::\|[∷∀→←⇒⇐]\)" contained
   \ nextgroup=purescriptType skipwhite skipempty
-syn match purescriptOperator "\([-!#$%&\*\+/<=>\?@\\^|~:]\|\<_\>\)"
 syn match purescriptOperatorFunction "\(->\|<-\|[→←]\)" contained
 
 syn match purescriptDelimiter "[,;|]"
@@ -80,6 +80,8 @@ syn region purescriptDataType start="^data" end="="me=e-1,re=e-1
   \ contains=purescriptStructure,purescriptType,purescriptTypeVar
 syn region purescriptDataConstructors start="" end="^\S"me=e-1 contained keepend
   \ contains=purescriptForall,purescriptConstructorDecl,purescriptTypeVar,purescriptDelimiter,purescriptBlockDelimiter,purescriptOperator,purescriptOperatorType,purescriptOperatorTypeSig
+syn region purescriptForeignData start="^foreign\s\+import\s\+data\>" end="$"
+  \ contains=purescriptImportKeyword,purescriptStructure,purescriptType,purescriptOperatorType,purescriptOperator,purescriptOperatorTypeSig
 syn region purescriptNewtype start="^newtype" end="="he=e-1 keepend
   \ contains=purescriptStructure,purescriptType,purescriptTypeVar
   \ nextgroup=purescriptForall,purescriptConstructorDecl,purescriptTypeVar skipwhite skipnl
