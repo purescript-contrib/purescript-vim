@@ -16,12 +16,9 @@ syn region purescriptTypeExport matchgroup=purescriptType start="\<[A-Z]\(\S\&[^
   \ contains=purescriptConstructor,purescriptBlockDelimiter
 
 syn match purescriptConstructor "\<[A-Z]\w*\>" contained
-  \ nextgroup=purescriptIdentifier skipwhite
 syn region purescriptConstructorDecl matchgroup=purescriptConstructor start="\<[A-Z]\w*\>" end="\(|\|$\)"me=e-1,re=e-1
   \ contains=purescriptType,purescriptTypeVar,purescriptDelimiter,purescriptBlockDelimiter,purescriptOperatorType,purescriptOperatorTypeSig
 
-syn match purescriptIdentifier "\<[_a-z]\(\w\|\'\)*\>" contained
-  \ nextgroup=purescriptIdentifier skipwhite
 syn region purescriptFunctionBody excludenl start="^\z(\s*\)[_a-z]\(\w\|\'\)*\([^=]\{-}=\|\_.\{-}|\)" end="^\z1\?\S"me=s-1,re=s-1 fold keepend
   \ contains=purescriptNumber,purescriptFloat,purescriptConstructor,purescriptOperator,purescriptOperatorFunction,purescriptDelimiter,purescriptBlockDelimiter,purescriptConditional,purescriptStatement,purescriptWhere,purescriptChar,purescriptBacktick,purescriptString,purescriptMultilineString,purescriptLineComment,purescriptBlockComment,purescriptFunctionDecl,purescriptFunctionBody
 syn region purescriptFunctionDecl start="^\z(\s*\)\(foreign import\s\+\)\?[_a-z]\(\w\|\'\)*\s*\(::\|∷\)" end="^\z1\?\S"me=s-1,re=s-1 keepend
@@ -93,13 +90,13 @@ syn region purescriptClass start="^\<class\>" end="where"me=e-5
   \ contains=purescriptStructure,purescriptType,purescriptTypeVar
   \ nextgroup=purescriptWhere
 syn region purescriptInstance start="^instance\>" end="where"me=e-5
-  \ contains=purescriptStructure,purescriptIdentifier,purescriptOperatorType,purescriptType,purescriptTypeVar
+  \ contains=purescriptStructure,purescriptOperatorType,purescriptType,purescriptTypeVar
   \ nextgroup=purescriptWhere
 syn region purescriptInstance start="^instance\>" end="$"
-  \ contains=purescriptStructure,purescriptIdentifier,purescriptOperatorType,purescriptType,purescriptTypeVar
+  \ contains=purescriptStructure,purescriptOperatorType,purescriptType,purescriptTypeVar
   \ nextgroup=purescriptWhere
 syn region purescriptDeriveInstance start="^derive\s\+instance\>" end="$"
-  \ contains=purescriptStructure,purescriptInstanceKeyword,purescriptIdentifier,purescriptOperatorType,purescriptType,purescriptTypeVar
+  \ contains=purescriptStructure,purescriptInstanceKeyword,purescriptOperatorType,purescriptType,purescriptTypeVar
   \ nextgroup=purescriptWhere
 
 syn match purescriptChar "'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'"
@@ -137,7 +134,7 @@ highlight def link purescriptFunctionName purescriptFunction
 highlight def link purescriptConstructor purescriptFunction
 highlight def link purescriptConstructorDecl purescriptConstructor
 
-highlight def link purescriptTypeVar purescriptIdentifier
+highlight def link purescriptTypeVar Identifier
 highlight def link purescriptForall purescriptStatement
 
 highlight def link purescriptChar String
@@ -152,7 +149,6 @@ highlight def link purescriptStructure purescriptKeyword
 highlight def link purescriptKeyword Keyword
 highlight def link purescriptStatement Statement
 highlight def link purescriptOperator Operator
-highlight def link purescriptIdentifier Identifier
 highlight def link purescriptFunction Function
 highlight def link purescriptType Type
 highlight def link purescriptComment Comment
