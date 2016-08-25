@@ -108,8 +108,8 @@ syn region purescriptBlockComment start="{-" end="-}" fold
   \ contains=purescriptBlockComment
 
 highlight def link purescriptModuleKeyword purescriptKeyword
-highlight def link purescriptModuleName purescriptInclude
-highlight def link purescriptModuleParams Delimiter
+highlight def link purescriptModuleName Include
+highlight def link purescriptModuleParams purescriptDelimiter
 highlight def link purescriptImportKeyword purescriptKeyword
 highlight def link purescriptAsKeyword purescriptKeyword
 highlight def link purescriptHidingKeyword purescriptKeyword
@@ -120,8 +120,8 @@ highlight def link purescriptInfix PreProc
 highlight def link purescriptNumber Number
 highlight def link purescriptFloat Float
 
+highlight def link purescriptBlockDelimiter purescriptDelimiter
 highlight def link purescriptDelimiter Delimiter
-highlight def link purescriptBlockDelimiter Delimiter
 
 highlight def link purescriptOperatorType purescriptOperator
 highlight def link purescriptOperatorTypeSig purescriptOperatorType
@@ -143,10 +143,9 @@ highlight def link purescriptMultilineString String
 highlight def link purescriptLineComment purescriptComment
 highlight def link purescriptBlockComment purescriptComment
 
+highlight def link purescriptStructure purescriptKeyword
 highlight def link purescriptKeyword Keyword
-highlight def link purescriptInclude Include
 highlight def link purescriptStatement Statement
-highlight def link purescriptStructure Structure
 highlight def link purescriptOperator Operator
 highlight def link purescriptIdentifier Identifier
 highlight def link purescriptFunction Function
