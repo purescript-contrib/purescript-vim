@@ -35,7 +35,7 @@ syn match purescriptForall "\(forall\|∀\)"
 
 syn match purescriptModule "^\<module\>\s\+\<\(\w\+\.\?\)*\>"
   \ contains=purescriptModuleKeyword,purescriptModuleName
-  \ nextgroup=purescriptModuleParams skipwhite skipempty
+  \ nextgroup=purescriptModuleParams skipwhite skipnl skipempty
 syn keyword purescriptModuleKeyword module contained
 syn match purescriptModuleName "\(\w\+\.\?\)*" contained excludenl
 syn region purescriptModuleParams start="(" end=")" fold contained keepend
@@ -67,9 +67,9 @@ syn match purescriptFloat "[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\="
 
 syn match purescriptOperator "\([-!#$%&\*\+/<=>\?@\\^|~:]\|\<_\>\)"
 syn match purescriptOperatorType "\(::\|∷\)" contained
-  \ nextgroup=purescriptForall,purescriptType skipwhite skipempty
+  \ nextgroup=purescriptForall,purescriptType skipwhite skipnl skipempty
 syn match purescriptOperatorTypeSig "\(->\|<-\|=>\|<=\|::\|[∷∀→←⇒⇐]\)" contained
-  \ nextgroup=purescriptType skipwhite skipempty
+  \ nextgroup=purescriptType skipwhite skipnl skipempty
 syn match purescriptOperatorFunction "\(->\|<-\|[→←]\)" contained
 
 syn match purescriptDelimiter "[,;|]"
