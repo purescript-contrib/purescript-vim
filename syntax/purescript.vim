@@ -15,9 +15,9 @@ syn match purescriptTypeVar "\<[_a-z]\(\w\|\'\)*\>" contained
 syn region purescriptTypeExport matchgroup=purescriptType start="\<[A-Z]\(\S\&[^,.]\)*\>("rs=e-1 matchgroup=purescriptBlockDelimiter end=")" contained extend
   \ contains=purescriptConstructor,purescriptBlockDelimiter
 
-syn match purescriptConstructor "\<[A-Z]\w*\>"
+syn match purescriptConstructor "\<[A-Z]\w*\>" contained
   \ nextgroup=purescriptIdentifier skipwhite
-syn region purescriptConstructorDecl matchgroup=purescriptConstructor start="\<[A-Z]\w*\>" end="\(|\|$\)"me=e-1,re=e-1 contained
+syn region purescriptConstructorDecl matchgroup=purescriptConstructor start="\<[A-Z]\w*\>" end="\(|\|$\)"me=e-1,re=e-1
   \ contains=purescriptType,purescriptTypeVar,purescriptDelimiter,purescriptBlockDelimiter,purescriptOperatorType,purescriptOperatorTypeSig
 
 syn match purescriptIdentifier "\<[_a-z]\(\w\|\'\)*\>" contained
