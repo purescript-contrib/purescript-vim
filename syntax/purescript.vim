@@ -30,16 +30,20 @@ syn match purescriptFunctionName "(\(\W\&[^(),\"]\)\+)" contained extend
 syn match purescriptForall "\(forall\|∀\)"
   \ nextgroup=purescriptTypeVar skipwhite
 
-syn match purescriptModule "^\<module\>\s\+\<\(\w\+\.\?\)*\>"
+syn match purescriptModuleName "\(\w\+\.\?\)*" contained excludenl
+syn match purescriptModuleKeyword "\<module\>"
+syn match purescriptModule "^module\>\s\+\<\(\w\+\.\?\)*\>"
   \ contains=purescriptModuleKeyword,purescriptModuleName
   \ nextgroup=purescriptModuleParams skipwhite skipnl skipempty
-syn keyword purescriptModuleKeyword module contained
-syn match purescriptModuleName "\(\w\+\.\?\)*" contained excludenl
 syn region purescriptModuleParams start="(" end=")" fold contained keepend
   \ contains=purescriptBlockComment,purescriptLineComment,purescriptDelimiter,purescriptType,purescriptTypeExport,purescriptFunctionName
   \ nextgroup=purescriptImportParams skipwhite
 
-syn match purescriptImport "\<import\>\s\+\(qualified\s\+\)\?\(\<\(\w\|\.\)*\>\)"
+syn match purescriptImportKeyword "\<\(foreign\|import\|qualified\)\>"
+syn keyword purescriptAsKeyword as contained
+syn keyword purescriptHidingKeyword hiding contained
+
+syn match purescriptImport "\<import\>\s\+\(qualified\s\+\)\?\<\(\w\+\.\?\)*\>"
   \ contains=purescriptImportKeyword,purescriptModuleName
   \ nextgroup=purescriptModuleParams,purescriptImportParams skipwhite
 syn match purescriptImportParams "as\s\+\(\w\+\)" contained
@@ -49,15 +53,17 @@ syn match purescriptImportParams "hiding" contained
   \ contains=purescriptHidingKeyword
   \ nextgroup=purescriptModuleParams,purescriptImportParams skipwhite
 
-syn keyword purescriptImportKeyword foreign import qualified contained
-syn keyword purescriptAsKeyword as contained
-syn keyword purescriptHidingKeyword hiding contained
-
 syn keyword purescriptConditional if then else
 syn keyword purescriptStatement do case of let in
 syn keyword purescriptWhere where
 syn keyword purescriptStructure foreign data newtype type class instance derive contained
-syn keyword purescriptInfix infix infixl infixr
+syn keyword purescriptInfixKeyword infix infixl infixr contained
+syn match purescriptInfix "^\(infix\|infixl\|infixr\)\>\s\+\([0-9]\+\)\s\+\(\S\+\)\s\+as"
+  \ contains=purescriptInfixKeyword,purescriptNumber,purescriptAsKeyword,purescriptConstructor,purescriptStructure,purescriptFunctionName,purescriptBlockComment
+  \ nextgroup=purescriptFunctionName,purescriptOperator,purescriptLineComment,purescriptBlockComment
+syn match purescriptInfix "^\(infix\|infixl\|infixr\)\>\s\+\([0-9]\+\)\s\+\(type\)\s\+\(\S\+\)\s\+as"
+  \ contains=purescriptInfixKeyword,purescriptNumber,purescriptAsKeyword,purescriptType,purescriptStructure,purescriptFunctionName,purescriptBlockComment
+  \ nextgroup=purescriptFunctionName,purescriptOperator,purescriptLineComment,purescriptBlockComment
 
 syn match purescriptIdentifier "\<[_a-z]\(\w\|\'\)*\>" contained
 syn keyword purescriptBoolean true false
@@ -113,7 +119,7 @@ highlight def link purescriptHidingKeyword purescriptKeyword
 
 highlight def link purescriptConditional Conditional
 highlight def link purescriptWhere purescriptKeyword
-highlight def link purescriptInfix purescriptKeyword
+highlight def link purescriptInfixKeyword purescriptKeyword
 
 highlight def link purescriptBoolean Boolean
 highlight def link purescriptNumber Number
