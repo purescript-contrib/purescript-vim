@@ -67,7 +67,7 @@ syn match purescriptInfix "^\(infix\|infixl\|infixr\)\>\s\+\([0-9]\+\)\s\+\(type
 
 syn match purescriptIdentifier "\<[_a-z]\(\w\|\'\)*\>" contained
 syn keyword purescriptBoolean true false
-syn match purescriptNumber "[0-9]\+\|0[xX][0-9a-fA-F]\+\|0[oO][0-7]"
+syn match purescriptNumber "0[xX][0-9a-fA-F]\+\|0[oO][0-7]\|[0-9]\+"
 syn match purescriptFloat "[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\="
 
 syn match purescriptOperator "\([-!#$%&\*\+/<=>\?@\\^|~:]\|\<_\>\)"
