@@ -20,7 +20,7 @@ syn region purescriptConstructorDecl matchgroup=purescriptConstructor start="\<[
   \ contains=purescriptType,purescriptTypeVar,purescriptDelimiter,purescriptBlockDelimiter,purescriptOperatorType,purescriptOperatorTypeSig
 
 syn region purescriptFunctionBody excludenl start="^\z(\s*\)[_a-z]\(\w\|\'\)*\([^=]\{-}=\|\_.\{-}|\)" end="^\z1\?\S"me=s-1,re=s-1 fold keepend
-  \ contains=purescriptBoolean,purescriptNumber,purescriptFloat,purescriptConstructor,purescriptOperator,purescriptOperatorFunction,purescriptDelimiter,purescriptBlockDelimiter,purescriptConditional,purescriptStatement,purescriptWhere,purescriptChar,purescriptBacktick,purescriptString,purescriptMultilineString,purescriptLineComment,purescriptBlockComment,purescriptFunctionDecl,purescriptFunctionBody
+  \ contains=purescriptIdentifier,purescriptBoolean,purescriptNumber,purescriptFloat,purescriptConstructor,purescriptOperator,purescriptOperatorFunction,purescriptDelimiter,purescriptBlockDelimiter,purescriptConditional,purescriptStatement,purescriptWhere,purescriptChar,purescriptBacktick,purescriptString,purescriptMultilineString,purescriptLineComment,purescriptBlockComment,purescriptFunctionDecl,purescriptFunctionBody
 syn region purescriptFunctionDecl start="^\z(\s*\)\(foreign import\s\+\)\?[_a-z]\(\w\|\'\)*\s*\(::\|∷\)" end="^\z1\?\S"me=s-1,re=s-1 keepend
   \ contains=purescriptFunctionDeclStart,purescriptOperatorType,purescriptOperatorTypeSig,purescriptType,purescriptTypeVar,purescriptBlockDelimiter,purescriptDelimiter,purescriptForall
 syn match purescriptFunctionDeclStart "\(foreign import\s\+\)\?[_a-z]\(\w\|\'\)*\s*\(::\|∷\)" contained
@@ -59,6 +59,7 @@ syn keyword purescriptWhere where
 syn keyword purescriptStructure foreign data newtype type class instance derive contained
 syn keyword purescriptInfix infix infixl infixr
 
+syn match purescriptIdentifier "\<[_a-z]\(\w\|\'\)*\>" contained
 syn keyword purescriptBoolean true false
 syn match purescriptNumber "[0-9]\+\|0[xX][0-9a-fA-F]\+\|0[oO][0-7]"
 syn match purescriptFloat "[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\="
