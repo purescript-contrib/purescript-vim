@@ -30,15 +30,9 @@ syn region purescriptConstructorDecl matchgroup=purescriptConstructor start="\<[
   \ contains=purescriptType,purescriptTypeVar,purescriptDelimiter,purescriptOperatorType,purescriptOperatorTypeSig,@purescriptComment
 
 " Function
-syn region purescriptFunctionDecl excludenl start="^\z(\s*\)\(foreign import\s\+\)\?[_a-z]\(\w\|\'\)*\_s\{-}\(::\|∷\)" end="^\z1\=\S"me=s-1,re=s-1 keepend
-  \ contains=purescriptFunctionDeclStart,purescriptForall,purescriptOperatorType,purescriptOperatorTypeSig,purescriptType,purescriptTypeVar,purescriptDelimiter,@purescriptComment
-syn match purescriptFunctionDeclStart "^\s*\(foreign import\s\+\)\?\([_a-z]\(\w\|\'\)*\)\_s\{-}\(::\|∷\)" contained
-  \ contains=purescriptImportKeyword,purescriptFunction,purescriptOperatorType
 syn match purescriptFunction "\<[_a-z]\(\w\|\'\)*\>" contained
 syn match purescriptFunction "(\(\W\&[^(),\"]\)\+)" contained extend
 syn match purescriptBacktick "`[_A-Za-z][A-Za-z0-9_]*`"
-syn keyword purescriptForall forall
-syn match purescriptForall "∀"
 
 " Module
 syn match purescriptModuleName "\(\w\+\.\?\)*" contained excludenl
@@ -52,9 +46,6 @@ syn region purescriptModuleParams start="(" end=")" fold contained keepend
 
 " Import
 syn match purescriptImportKeyword "\<\(foreign\|import\|qualified\)\>"
-syn match purescriptForeignImport "\<\(foreign\s\+import\)\>"
-  \ contains=purescriptImportKeyword
-  \ nextgroup=purescriptFunction,purescriptStructure
 syn keyword purescriptAsKeyword as contained
 syn keyword purescriptHidingKeyword hiding contained
 syn match purescriptImport "\<import\>\s\+\(qualified\s\+\)\?\<\(\w\+\.\?\)*\>"
@@ -66,6 +57,14 @@ syn match purescriptImportParams "as\s\+\(\w\+\)" contained
 syn match purescriptImportParams "hiding" contained
   \ contains=purescriptHidingKeyword
   \ nextgroup=purescriptModuleParams,purescriptImportParams skipwhite
+
+" Function declaration
+syn region purescriptFunctionDecl excludenl start="^\z(\s*\)\(foreign\s\+import\_s\+\)\?[_a-z]\(\w\|\'\)*\_s\{-}\(::\|∷\)" end="^\z1\=\S"me=s-1,re=s-1 keepend
+  \ contains=purescriptFunctionDeclStart,purescriptForall,purescriptOperatorType,purescriptOperatorTypeSig,purescriptType,purescriptTypeVar,purescriptDelimiter,@purescriptComment
+syn match purescriptFunctionDeclStart "^\s*\(foreign\s\+import\_s\+\)\?\([_a-z]\(\w\|\'\)*\)\_s\{-}\(::\|∷\)" contained
+  \ contains=purescriptImportKeyword,purescriptFunction,purescriptOperatorType
+syn keyword purescriptForall forall
+syn match purescriptForall "∀"
 
 " Keywords
 syn keyword purescriptConditional if then else
@@ -99,6 +98,9 @@ syn region purescriptData start="^data\s\+\([A-Z]\w*\)" end="^\S"me=s-1,re=s-1 t
 syn match purescriptDataStart "^data\s\+\([A-Z]\w*\)" contained
   \ containedin=purescriptData
   \ contains=purescriptStructure,purescriptType,purescriptTypeVar
+syn match purescriptForeignData "\<foreign\s\+import\s\+data\>"
+  \ contains=purescriptImportKeyword,purescriptStructure
+  \ nextgroup=purescriptType skipwhite
 
 syn region purescriptNewtype start="^newtype\s\+\([A-Z]\w*\)" end="^\S"me=s-1,re=s-1 transparent
 syn match purescriptNewtypeStart "^newtype\s\+\([A-Z]\w*\)" contained
