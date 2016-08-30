@@ -15,6 +15,9 @@ syn match purescriptNumber "0[xX][0-9a-fA-F]\+\|0[oO][0-7]\|[0-9]\+"
 syn match purescriptFloat "[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\="
 syn keyword purescriptBoolean true false
 
+" Delimiters
+syn match purescriptDelimiter "[,;|.()[\]{}]"
+
 " Type
 syn match purescriptType "\<[A-Z]\w*\>" contained
   \ nextgroup=purescriptType skipwhite
@@ -89,9 +92,6 @@ syn match purescriptOperatorType "\(::\|∷\)"
 syn match purescriptOperatorFunction "\(->\|<-\|[→←]\)"
 syn match purescriptOperatorTypeSig "\(->\|<-\|=>\|<=\|::\|[∷∀→←⇒⇐]\)" contained
   \ nextgroup=purescriptType skipwhite skipnl skipempty
-
-" Delimiters
-syn match purescriptDelimiter "[,;|.()[\]{}]"
 
 " Type definition
 syn region purescriptData start="^data\s\+\([A-Z]\w*\)" end="^\S"me=s-1,re=s-1 transparent
