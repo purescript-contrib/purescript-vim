@@ -18,19 +18,20 @@ syn keyword purescriptBoolean true false
 " Delimiters
 syn match purescriptDelimiter "[,;|.()[\]{}]"
 
-" Type
-syn match purescriptType "\<[A-Z]\w*\>" contained
-  \ nextgroup=purescriptType skipwhite
-syn match purescriptTypeVar "\<[_a-z]\(\w\|\'\)*\>" contained
-  \ containedin=purescriptData,purescriptNewtype,purescriptType,purescriptFunctionDecl
-syn region purescriptTypeExport matchgroup=purescriptType start="\<[A-Z]\(\S\&[^,.]\)*\>("rs=e-1 matchgroup=purescriptDelimiter end=")" contained extend
-  \ contains=purescriptConstructor,purescriptDelimiter
-
 " Constructor
 syn match purescriptConstructor "\<[A-Z]\w*\>"
 syn region purescriptConstructorDecl matchgroup=purescriptConstructor start="\<[A-Z]\w*\>" end="\(|\|$\)"me=e-1,re=e-1 contained
   \ containedin=purescriptData,purescriptNewtype
   \ contains=purescriptType,purescriptTypeVar,purescriptDelimiter,purescriptOperatorType,purescriptOperatorTypeSig,@purescriptComment
+
+" Type
+syn match purescriptType "\<[A-Z]\w*\>" contained
+  \ containedin=purescriptTypeAlias
+  \ nextgroup=purescriptType,purescriptTypeVar skipwhite
+syn match purescriptTypeVar "\<[_a-z]\(\w\|\'\)*\>" contained
+  \ containedin=purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptFunctionDecl
+syn region purescriptTypeExport matchgroup=purescriptType start="\<[A-Z]\(\S\&[^,.]\)*\>("rs=e-1 matchgroup=purescriptDelimiter end=")" contained extend
+  \ contains=purescriptConstructor,purescriptDelimiter
 
 " Function
 syn match purescriptFunction "\<[_a-z]\(\w\|\'\)*\>" contained
@@ -107,9 +108,9 @@ syn match purescriptNewtypeStart "^newtype\s\+\([A-Z]\w*\)" contained
   \ containedin=purescriptNewtype
   \ contains=purescriptStructure,purescriptType,purescriptTypeVar
 
-syn region purescriptType start="^type\s\+\([A-Z]\w*\)" end="^\S"me=s-1,re=s-1 transparent
-syn match purescriptTypeStart "^type\s\+\([A-Z]\w*\)" contained
-  \ containedin=purescriptType
+syn region purescriptTypeAlias start="^type\s\+\([A-Z]\w*\)" end="^\S"me=s-1,re=s-1 transparent
+syn match purescriptTypeAliasStart "^type\s\+\([A-Z]\w*\)" contained
+  \ containedin=purescriptTypeAlias
   \ contains=purescriptStructure,purescriptType,purescriptTypeVar
 
 " String
