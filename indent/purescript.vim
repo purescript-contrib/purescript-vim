@@ -35,6 +35,12 @@ if !exists('g:purescript_indent_let')
   let g:purescript_indent_let = 4
 endif
 
+if !exists('g:purescript_indent_in')
+  " let x = 0
+  " >in
+  let g:purescript_indent_in = 1
+endif
+
 if !exists('g:purescript_indent_where')
   " where f :: Int -> Int
   " >>>>>>f x = x
@@ -47,8 +53,16 @@ if !exists('g:purescript_indent_do')
   let g:purescript_indent_do = 3
 endif
 
+if !exists('g:purescript_indent_dot')
+  " f
+  "   :: forall a
+  "   >. String
+  "   -> String
+  let g:purescript_indent_dot = 1
+endif
+
 setlocal indentexpr=GetPurescriptIndent()
-setlocal indentkeys=!^F,o,O,},=where,=in
+setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,==>
 
 function! GetPurescriptIndent()
   let prevline = getline(v:lnum - 1)
@@ -56,7 +70,7 @@ function! GetPurescriptIndent()
 
   if line =~ '^\s*\<where\>'
     let s = match(prevline, '\S')
-    return s + 2
+    return s + &shiftwidth
   endif
 
   if line =~ '^\s*\<in\>'
@@ -68,7 +82,45 @@ function! GetPurescriptIndent()
       let s = match(getline(n),'\<let\>')
     endwhile
 
-    return s + 1
+    return s + g:purescript_indent_in
+  endif
+
+  let s = match(prevline, '^\s*--')
+  if s >= 0
+    return s
+  endif
+
+  if prevline =~ '^\S'
+    " starting type signature or function body on next line
+    echom "xxx " . prevline
+    return &shiftwidth
+  endif
+
+  if line =~ '^\s*::'
+    return match(prevline, '\S') + &shiftwidth
+  endif
+
+  if prevline =~ '^\s*::\s*forall'
+    return match(prevline, '\S') + g:purescript_indent_dot
+  endif
+
+  let s = match(prevline, '^\s*\zs\%(::\|=>\|->\)')
+  let r = match(prevline, '^\s*\zs\.')
+  if s >= 0 || r >= 0
+    echom prevline
+    if s >= 0
+      if line !~ '^\s*\%(::\|=>\|->\)'
+	return s - 2
+      else
+	return s
+      endif
+    elseif r >= 0
+      if line !~ '^\s\%(::\|=>\|->\)'
+	return r - g:purescript_indent_dot
+      else
+	return r
+      endif
+    endif
   endif
 
   if prevline =~ '[!#$%&*+./<>?@\\^|~-]\s*$'
@@ -77,11 +129,11 @@ function! GetPurescriptIndent()
       return s + 2
     endif
 
-    let s = match(prevline, ':')
+    let s = match(prevline, '\<:\>')
     if s > 0
-      return s + 3
+      return s + &shiftwidth
     else
-      return match(prevline, '\S')
+      return match(prevline, '\S') + &shiftwidth
     endif
   endif
 
@@ -105,8 +157,12 @@ function! GetPurescriptIndent()
     endif
   endif
 
-  if prevline =~ '\(\<where\>\|\<do\>\|=\|[{([]\)\s*$'
+  if prevline =~ '\(\<where\>\|\<do\>\|=\)\s*$'
     return match(prevline, '\S') + &shiftwidth
+  endif
+
+  if prevline =~ '[{([]\s*$'
+    return match(prevline, '\S') + (line !~ '^\s*[})]]' ? 0 : &shiftwidth)
   endif
 
   if prevline =~ '\<where\>\s\+\S\+.*$'
