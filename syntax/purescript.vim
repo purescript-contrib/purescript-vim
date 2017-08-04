@@ -74,7 +74,7 @@ syn match purescriptForall "∀"
 syn keyword purescriptConditional if then else
 syn keyword purescriptStatement do case of let in
 syn keyword purescriptWhere where
-syn match purescriptStructure "\<\(data\|newtype\|type\|class\)\>"
+syn match purescriptStructure "\<\(data\|newtype\|type\|class\|kind\)\>"
   \ nextgroup=purescriptType skipwhite
 syn keyword purescriptStructure derive
 syn keyword purescriptStructure instance
