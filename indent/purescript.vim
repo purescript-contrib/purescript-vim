@@ -85,7 +85,7 @@ function! GetPurescriptIndent()
     return s + g:purescript_indent_in
   endif
 
-  let s = match(prevline, '^\s*--')
+  let s = match(prevline, '^\s*\zs\(--\|import\>\)')
   if s >= 0
     return s
   endif
