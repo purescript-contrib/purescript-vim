@@ -87,12 +87,19 @@ function! GetPurescriptIndent()
 
   let s = match(prevline, '^\s*\zs\(--\|import\>\)')
   if s >= 0
+    " comments
+    " imports
     return s
+  endif
+
+  if prevline =~ '^\S.*::' && line !~ '^\s*\(\.\|->\|=>\)'
+    " f :: String
+    "	-> String
+    return 0
   endif
 
   if prevline =~ '^\S'
     " starting type signature or function body on next line
-    echom "xxx " . prevline
     return &shiftwidth
   endif
 
