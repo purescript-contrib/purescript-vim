@@ -152,6 +152,7 @@ function! GetPurescriptIndent()
   endif
 
   if prevline =~ '[{([][^})\]]\+$'
+    echom "return 1"
     return match(prevline, '[{([]')
   endif
 
@@ -176,6 +177,7 @@ function! GetPurescriptIndent()
   endif
 
   if prevline =~ '[{([]\s*$'
+    echom "return 2"
     return match(prevline, '\S') + (line !~ '^\s*[})]]' ? 0 : &shiftwidth)
   endif
 
@@ -199,7 +201,7 @@ function! GetPurescriptIndent()
     return match(prevline, '\<data\>') + &shiftwidth
   endif
 
-  if (line =~ '^\s*}\s*' && prevline !~ '^\s*;')
+  if prevline =~ '^\s*[}\]]'
     return match(prevline, '\S') - &shiftwidth
   endif
 
