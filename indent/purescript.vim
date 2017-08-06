@@ -65,6 +65,7 @@ setlocal indentexpr=GetPurescriptIndent()
 setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,==>
 
 function! GetPurescriptIndent()
+  let ppline = getline(v:lnum - 2)
   let prevline = getline(v:lnum - 1)
   let line = getline(v:lnum)
   let synStackP = map(synstack(v:lnum - 1, col(".")), { key, val -> synIDattr(val, "name") })
@@ -86,7 +87,7 @@ function! GetPurescriptIndent()
     return s + g:purescript_indent_in
   endif
 
-  let s = match(prevline, '^\s*\zs\(--\|import\>\)')
+  let s = match(prevline, '^\s*\zs\(--\|import\)')
   if s >= 0
     " comments
     " imports
@@ -107,8 +108,12 @@ function! GetPurescriptIndent()
   endif
 
   if prevline =~ '^\S'
-    " starting type signature or function body on next line
+    " starting type signature, function body, data & newtype on next line
     return &shiftwidth
+  endif
+
+  if ppline =~ '^\S' && prevline =~ '^\s*$'
+    return 0
   endif
 
   if line =~ '^\s*::'
