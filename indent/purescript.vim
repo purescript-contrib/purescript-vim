@@ -67,6 +67,7 @@ setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,==>
 function! GetPurescriptIndent()
   let prevline = getline(v:lnum - 1)
   let line = getline(v:lnum)
+  let synStackP = map(synstack(v:lnum - 1, col(".")), { key, val -> synIDattr(val, "name") })
 
   if line =~ '^\s*\<where\>'
     let s = match(prevline, '\S')
@@ -92,17 +93,17 @@ function! GetPurescriptIndent()
     return s
   endif
 
-  " todo: find a better pattern '\<|\>' does not work.
-  let s = match(prevline, '[[:alnum:][:blank:]]\@<=|[[:alnum:][:blank:]$]')
-  if s >= 0
-    " ident pattern quards
-    return s
-  endif
-
   if prevline =~ '^\S.*::' && line !~ '^\s*\(\.\|->\|=>\)' && !~ '^instance'
     " f :: String
     "	-> String
     return 0
+  endif
+
+  let s = match(prevline, '[[:alnum:][:blank:]]\@<=|[[:alnum:][:blank:]$]')
+  if s >= 0 && index(synStackP, "purescriptFunctionDecl") == -1
+    " ident pattern quards but not if we are in a type declaration
+    " what we detect using syntax groups
+    return s
   endif
 
   if prevline =~ '^\S'
@@ -121,7 +122,6 @@ function! GetPurescriptIndent()
   let s = match(prevline, '^\s*\zs\%(::\|=>\|->\)')
   let r = match(prevline, '^\s*\zs\.')
   if s >= 0 || r >= 0
-    echom prevline
     if s >= 0
       if line !~ '^\s*\%(::\|=>\|->\)'
 	return s - 2
