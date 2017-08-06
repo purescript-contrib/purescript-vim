@@ -92,6 +92,13 @@ function! GetPurescriptIndent()
     return s
   endif
 
+  " todo: find a better pattern '\<|\>' does not work.
+  let s = match(prevline, '[[:alnum:][:blank:]]\@<=|[[:alnum:][:blank:]$]')
+  if s >= 0
+    " ident pattern quards
+    return s
+  endif
+
   if prevline =~ '^\S.*::' && line !~ '^\s*\(\.\|->\|=>\)' && !~ '^instance'
     " f :: String
     "	-> String
