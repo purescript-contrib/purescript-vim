@@ -65,8 +65,10 @@ setlocal indentexpr=GetPurescriptIndent()
 setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,==>
 
 function! GetPurescriptIndent()
+  let ppline = getline(v:lnum - 2)
   let prevline = getline(v:lnum - 1)
   let line = getline(v:lnum)
+  let synStackP = map(synstack(v:lnum - 1, col(".")), { key, val -> synIDattr(val, "name") })
 
   if line =~ '^\s*\<where\>'
     let s = match(prevline, '\S')
@@ -85,15 +87,33 @@ function! GetPurescriptIndent()
     return s + g:purescript_indent_in
   endif
 
-  let s = match(prevline, '^\s*\zs\(--\|import\>\)')
+  let s = match(prevline, '^\s*\zs\(--\|import\)')
   if s >= 0
+    " comments
+    " imports
+    return s
+  endif
+
+  if prevline =~ '^\S.*::' && line !~ '^\s*\(\.\|->\|=>\)' && !~ '^instance'
+    " f :: String
+    "	-> String
+    return 0
+  endif
+
+  let s = match(prevline, '[[:alnum:][:blank:]]\@<=|[[:alnum:][:blank:]$]')
+  if s >= 0 && index(synStackP, "purescriptFunctionDecl") == -1
+    " ident pattern quards but not if we are in a type declaration
+    " what we detect using syntax groups
     return s
   endif
 
   if prevline =~ '^\S'
-    " starting type signature or function body on next line
-    echom "xxx " . prevline
+    " starting type signature, function body, data & newtype on next line
     return &shiftwidth
+  endif
+
+  if ppline =~ '^\S' && prevline =~ '^\s*$'
+    return 0
   endif
 
   if line =~ '^\s*::'
@@ -107,7 +127,6 @@ function! GetPurescriptIndent()
   let s = match(prevline, '^\s*\zs\%(::\|=>\|->\)')
   let r = match(prevline, '^\s*\zs\.')
   if s >= 0 || r >= 0
-    echom prevline
     if s >= 0
       if line !~ '^\s*\%(::\|=>\|->\)'
 	return s - 2
@@ -138,6 +157,7 @@ function! GetPurescriptIndent()
   endif
 
   if prevline =~ '[{([][^})\]]\+$'
+    echom "return 1"
     return match(prevline, '[{([]')
   endif
 
@@ -162,6 +182,7 @@ function! GetPurescriptIndent()
   endif
 
   if prevline =~ '[{([]\s*$'
+    echom "return 2"
     return match(prevline, '\S') + (line !~ '^\s*[})]]' ? 0 : &shiftwidth)
   endif
 
@@ -185,7 +206,7 @@ function! GetPurescriptIndent()
     return match(prevline, '\<data\>') + &shiftwidth
   endif
 
-  if (line =~ '^\s*}\s*' && prevline !~ '^\s*;')
+  if prevline =~ '^\s*[}\]]'
     return match(prevline, '\S') - &shiftwidth
   endif
 
