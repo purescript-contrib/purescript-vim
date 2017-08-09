@@ -1,9 +1,9 @@
 Purescript Syntax/Indentation
 =============================
 
-Syntax highlighting and indentation for [Purescript][] based on [idris-vim][] and [haskell-vim][].
+[![Maintainer: coot](https://img.shields.io/badge/maintainer-coot-lightgrey.svg)](http://github.com/coot)
 
-I hope you find this useful.
+Syntax highlighting and indentation for [Purescript][] based on [idris-vim][] and [haskell-vim][].
 
 ## Installation
 
@@ -19,7 +19,6 @@ Copy content into your `~/.vim` directory (or `%HOME%\vimfiles` on Windows).
 
 Be sure that the following lines are in your
 `.vimrc`
-
 
     syntax on
     filetype on
