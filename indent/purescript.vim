@@ -113,6 +113,18 @@ function! GetPurescriptIndent()
     return s
   endif
 
+  " indent rules for -> (lambdas and case expressions)
+  let s = match(line, '->')
+  " protect that we are not in a type signature
+  if s >= 0 && prevline !~ '^\s*\(->\|=>\|::\|\.\)'
+    let p = match(prevline, '\\')
+    if p >= 0 && index(s:GetSynStack(v:lnum - 1, p), "purescriptString") == -1
+      return p
+    else
+      return match(prevline, '\S') + &l:shiftwidth
+    endif
+  endif
+
   if prevline =~ '^\S'
     " start typing signature, function body, data & newtype on next line
     return &l:shiftwidth
