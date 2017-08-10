@@ -81,7 +81,7 @@ function! GetPurescriptIndent()
 
     while s <= 0 && n > 0
       let n = n - 1
-      let s = match(getline(n),'\<let\>')
+      let s = match(getline(n), '\<let\>')
     endwhile
 
     return s + g:purescript_indent_in
@@ -159,6 +159,16 @@ function! GetPurescriptIndent()
   if prevline =~ '[{([][^})\]]\+$'
     echom "return 1"
     return match(prevline, '[{([]')
+  endif
+
+  let s = match(prevline, '\<let\>\s\+\zs\S')
+  if s >= 0
+    return s
+  endif
+
+  let s = match(prevline, '\<let\>\s*$')
+  if s >= 0
+    return s + g:purescript_indent_let
   endif
 
   if prevline =~ '\<let\>\s\+.\+\(\<in\>\)\?\s*$'
