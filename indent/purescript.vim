@@ -75,7 +75,7 @@ function! GetPurescriptIndent()
 
   if line =~ '^\s*\<where\>'
     let s = match(prevline, '\S')
-    return s + &shiftwidth
+    return s + &l:shiftwidth
   endif
 
   if line =~ '^\s*\<in\>'
@@ -114,8 +114,8 @@ function! GetPurescriptIndent()
   endif
 
   if prevline =~ '^\S'
-    " starting type signature, function body, data & newtype on next line
-    return &shiftwidth
+    " start typing signature, function body, data & newtype on next line
+    return &l:shiftwidth
   endif
 
   if ppline =~ '^\S' && prevline =~ '^\s*$'
@@ -123,7 +123,7 @@ function! GetPurescriptIndent()
   endif
 
   if line =~ '^\s*::'
-    return match(prevline, '\S') + &shiftwidth
+    return match(prevline, '\S') + &l:shiftwidth
   endif
 
   if prevline =~ '^\s*::\s*forall'
@@ -156,9 +156,9 @@ function! GetPurescriptIndent()
 
     let s = match(prevline, '\<:\>')
     if s > 0
-      return s + &shiftwidth
+      return s + &l:shiftwidth
     else
-      return match(prevline, '\S') + &shiftwidth
+      return match(prevline, '\S') + &l:shiftwidth
     endif
   endif
 
@@ -197,12 +197,12 @@ function! GetPurescriptIndent()
 
   let s = match(prevline, '\(\<where\>\|\<do\>\|=\)\s*$')
   if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
-    return match(prevline, '\S') + &shiftwidth
+    return match(prevline, '\S') + &l:shiftwidth
   endif
 
   let s = match(prevline, '[{([]\s*$')
   if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
-    return match(prevline, '\S') + (line !~ '^\s*[})]]' ? 0 : &shiftwidth)
+    return match(prevline, '\S') + (line !~ '^\s*[})]]' ? 0 : &l:shiftwidth)
   endif
 
   let s = match(prevline, '\<where\>\s\+\S\+.*$')
@@ -226,12 +226,12 @@ function! GetPurescriptIndent()
   endif
 
   if prevline =~ '^\s*\<\data\>\s\+\S\+\s*$'
-    return match(prevline, '\<data\>') + &shiftwidth
+    return match(prevline, '\<data\>') + &l:shiftwidth
   endif
 
   let s = match(prevline, '^\s*[}\]]')
   if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
-    return match(prevline, '\S') - &shiftwidth
+    return match(prevline, '\S') - &l:shiftwidth
   endif
 
   return match(prevline, '\S')
