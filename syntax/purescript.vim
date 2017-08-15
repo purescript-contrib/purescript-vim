@@ -112,7 +112,6 @@ syn match purescriptInfix "^\(infix\|infixl\|infixr\)\>\s\+\([0-9]\+\)\s\+\(type
 " Operators
 syn match purescriptOperator "\([-!#$%&\*\+/<=>\?@\\^|~:]\|\<_\>\)"
 syn match purescriptOperatorType "\%(\<instance\>.*\)\@40<!\(::\|∷\)"
-" syn match purescriptOperatorType "\(::\|∷\)"
   \ nextgroup=purescriptForall,purescriptType skipwhite skipnl skipempty
 syn match purescriptOperatorFunction "\(->\|<-\|[\\→←]\)"
 syn match purescriptOperatorTypeSig "\(->\|<-\|=>\|<=\|::\|[∷∀→←⇒⇐]\)" contained
