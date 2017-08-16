@@ -74,8 +74,8 @@ function! GetPurescriptIndent()
   let line = getline(v:lnum)
 
   if line =~ '^\s*\<where\>'
-    let s = match(prevline, '\S')
-    return s + &l:shiftwidth
+    let s = indent(v:lnum - 1)
+    return max([s, &l:shiftwidth])
   endif
 
   if line =~ '^\s*\<in\>'
@@ -214,7 +214,7 @@ function! GetPurescriptIndent()
     endif
   endif
 
-  let s = match(prevline, '\(\<where\>\|\<do\>\|=\)\s*$')
+  let s = match(prevline, '\%(\<do\>\|=\)\s*$')
   if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
     return match(prevline, '\S') + &l:shiftwidth
   endif
@@ -224,9 +224,14 @@ function! GetPurescriptIndent()
     return match(prevline, '\S') + (line !~ '^\s*[})]]' ? 0 : &l:shiftwidth)
   endif
 
-  let s = match(prevline, '\<where\>\s\+\S\+.*$')
+  let s = match(prevline, '\<where\>\s*$')
   if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
-    return match(prevline, '\<where\>') + g:purescript_indent_where
+    return match(prevline, '\S') + g:purescript_indent_where
+  endif
+
+  let s = match(prevline, '\<where\>\s\+\zs\S\+.*$')
+  if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
+    return s
   endif
 
   let s = match(prevline, '\<do\>\s\+\S\+.*$')
