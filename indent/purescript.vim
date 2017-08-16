@@ -42,8 +42,9 @@ if !exists('g:purescript_indent_in')
 endif
 
 if !exists('g:purescript_indent_where')
-  " where f :: Int -> Int
-  " >>>>>>f x = x
+  " where
+  " >>f :: Int -> Int
+  " >>f x = x
   let g:purescript_indent_where = 6
 endif
 
@@ -214,7 +215,7 @@ function! GetPurescriptIndent()
     endif
   endif
 
-  let s = match(prevline, '\%(\<do\>\|=\)\s*$')
+  let s = match(prevline, '=\s*$')
   if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
     return match(prevline, '\S') + &l:shiftwidth
   endif
@@ -234,9 +235,14 @@ function! GetPurescriptIndent()
     return s
   endif
 
-  let s = match(prevline, '\<do\>\s\+\S\+.*$')
+  let s = match(prevline, '\<do\>\s*$')
   if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
-    return match(prevline, '\<do\>') + g:purescript_indent_do
+    return s + g:purescript_indent_do
+  endif
+
+  let s = match(prevline, '\<do\>\s\+\zs\S\+.*$')
+  if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
+    return s
   endif
 
   let s = match(prevline, '^\s*\<data\>\s\+[^=]\+\s\+=\s\+\S\+.*$')
