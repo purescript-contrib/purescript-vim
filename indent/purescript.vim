@@ -69,6 +69,10 @@ function! s:GetSynStack(lnum, col)
   return map(synstack(a:lnum, a:col), { key, val -> synIDattr(val, "name") })
 endfunction
 
+function! s:GetSynStack(lnum, col)
+  return map(synstack(a:lnum, a:col), { key, val -> synIDattr(val, "name") })
+endfunction
+
 function! GetPurescriptIndent()
   let ppline = getline(v:lnum - 2)
   let prevline = getline(v:lnum - 1)
