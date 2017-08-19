@@ -42,8 +42,9 @@ if !exists('g:purescript_indent_in')
 endif
 
 if !exists('g:purescript_indent_where')
-  " where f :: Int -> Int
-  " >>>>>>f x = x
+  " where
+  " >>f :: Int -> Int
+  " >>f x = x
   let g:purescript_indent_where = 6
 endif
 
@@ -62,7 +63,11 @@ if !exists('g:purescript_indent_dot')
 endif
 
 setlocal indentexpr=GetPurescriptIndent()
-setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,==>
+setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,=→,==>,=⇒
+
+function! s:GetSynStack(lnum, col)
+  return map(synstack(a:lnum, a:col), { key, val -> synIDattr(val, "name") })
+endfunction
 
 function! s:GetSynStack(lnum, col)
   return map(synstack(a:lnum, a:col), { key, val -> synIDattr(val, "name") })
@@ -74,8 +79,8 @@ function! GetPurescriptIndent()
   let line = getline(v:lnum)
 
   if line =~ '^\s*\<where\>'
-    let s = match(prevline, '\S')
-    return s + &l:shiftwidth
+    let s = indent(v:lnum - 1)
+    return max([s, &l:shiftwidth])
   endif
 
   if line =~ '^\s*\<in\>'
@@ -100,7 +105,7 @@ function! GetPurescriptIndent()
     return s
   endif
 
-  if prevline =~ '^\S.*::' && line !~ '^\s*\(\.\|->\|=>\)' && !~ '^instance'
+  if prevline =~ '^\S.*::' && line !~ '^\s*\(\.\|->\|→\|=>\|⇒\)' && !~ '^instance'
     " f :: String
     "	-> String
     return 0
@@ -113,10 +118,16 @@ function! GetPurescriptIndent()
     return s
   endif
 
+  let s = match(line, '\%(\\.\{-}\)\@<=->')
+  if s >= 0
+    " inline lambda
+    return indent(v:lnum)
+  endif
+
   " indent rules for -> (lambdas and case expressions)
   let s = match(line, '->')
   " protect that we are not in a type signature
-  if s >= 0 && prevline !~ '^\s*\(->\|=>\|::\|\.\)'
+  if s >= 0 && index(s:GetSynStack(s == 0 ? v:lnum - 1 : v:lnum, max([1, s])), "purescriptFunctionDecl") == -1
     let p = match(prevline, '\\')
     if p >= 0 && index(s:GetSynStack(v:lnum - 1, p), "purescriptString") == -1
       return p
@@ -134,25 +145,25 @@ function! GetPurescriptIndent()
     return 0
   endif
 
-  if line =~ '^\s*::'
+  if line =~ '^\s*\%(::\|∷\)'
     return match(prevline, '\S') + &l:shiftwidth
   endif
 
-  if prevline =~ '^\s*::\s*forall'
+  if prevline =~ '^\s*\(::\|∷\)\s*forall'
     return match(prevline, '\S') + g:purescript_indent_dot
   endif
 
-  let s = match(prevline, '^\s*\zs\%(::\|=>\|->\)')
+  let s = match(prevline, '^\s*\zs\%(::\|∷\|=>\|⇒\|->\|→\)')
   let r = match(prevline, '^\s*\zs\.')
   if s >= 0 || r >= 0
     if s >= 0
-      if line !~ '^\s*\%(::\|=>\|->\)'
+      if line !~ '^\s*\%(::\|∷\|=>\|⇒\|->\|→\)' && line !~ '^\s*$'
 	return s - 2
       else
 	return s
       endif
     elseif r >= 0
-      if line !~ '^\s\%(::\|=>\|->\)'
+      if line !~ '^\s\%(::\|∷\|=>\|⇒\|->\|→\)'
 	return r - g:purescript_indent_dot
       else
 	return r
@@ -207,7 +218,7 @@ function! GetPurescriptIndent()
     endif
   endif
 
-  let s = match(prevline, '\(\<where\>\|\<do\>\|=\)\s*$')
+  let s = match(prevline, '=\s*$')
   if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
     return match(prevline, '\S') + &l:shiftwidth
   endif
@@ -217,14 +228,24 @@ function! GetPurescriptIndent()
     return match(prevline, '\S') + (line !~ '^\s*[})]]' ? 0 : &l:shiftwidth)
   endif
 
-  let s = match(prevline, '\<where\>\s\+\S\+.*$')
+  let s = match(prevline, '\<where\>\s*$')
   if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
-    return match(prevline, '\<where\>') + g:purescript_indent_where
+    return match(prevline, '\S') + g:purescript_indent_where
   endif
 
-  let s = match(prevline, '\<do\>\s\+\S\+.*$')
+  let s = match(prevline, '\<where\>\s\+\zs\S\+.*$')
   if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
-    return match(prevline, '\<do\>') + g:purescript_indent_do
+    return s
+  endif
+
+  let s = match(prevline, '\<do\>\s*$')
+  if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
+    return s + g:purescript_indent_do
+  endif
+
+  let s = match(prevline, '\<do\>\s\+\zs\S\+.*$')
+  if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
+    return s
   endif
 
   let s = match(prevline, '^\s*\<data\>\s\+[^=]\+\s\+=\s\+\S\+.*$')
