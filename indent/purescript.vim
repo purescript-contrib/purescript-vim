@@ -63,7 +63,7 @@ if !exists('g:purescript_indent_dot')
 endif
 
 setlocal indentexpr=GetPurescriptIndent()
-setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,=→,==>,=⇒
+setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,=→,==>,=⇒,=else
 
 function! s:GetSynStack(lnum, col)
   return map(synstack(a:lnum, a:col), { key, val -> synIDattr(val, "name") })
@@ -199,17 +199,18 @@ function! GetPurescriptIndent()
     return match(prevline, '\<let\>') + g:purescript_indent_let
   endif
 
-  let s = match(prevline, '\<else\>')
-  if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
-    let s = match(prevline, '\<if\>.*\&.*\zs\<then\>')
-    if s > 0
-      return s
+  let s = searchpairpos('\%(--.\{-}\)\@<!\<if\>', '\<then\>', '\<else\>.*\zs$', 'bnrc')[0]
+  if s > 0
+    " this rule ensures that using `=` in visual mode will correctly indent
+    " `if then else`, but it does not handle lines after `then` and `else`
+    if line =~ '\<\%(then\|else\)\>'
+      return match(getline(s), '\<if\>') + &l:shiftwidth
     endif
+  endif
 
-    let s = match(prevline, '\<if\>')
-    if s > 0
-      return s + g:purescript_indent_if
-    endif
+  let p = match(prevline, '\<if\>\%(.\{-}\<then\>.\{-}\<else\>\)\@!')
+  if p > 0
+    return p + &l:shiftwidth
   endif
 
   let s = match(prevline, '=\s*$')
