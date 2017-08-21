@@ -122,14 +122,12 @@ function! GetPurescriptIndent()
 
   " indent rules for -> (lambdas and case expressions)
   let s = match(line, '->')
+  let p = match(prevline, '\\')
   " protect that we are not in a type signature
+  " and not in a case expression
   if s >= 0 && index(s:GetSynStack(s == 0 ? v:lnum - 1 : v:lnum, max([1, s])), "purescriptFunctionDecl") == -1
-    let p = match(prevline, '\\')
-    if p >= 0 && index(s:GetSynStack(v:lnum - 1, p), "purescriptString") == -1
-      return p
-    else
-      return match(prevline, '\S') + &l:shiftwidth
-    endif
+    \ && p >= 0 &&  index(s:GetSynStack(v:lnum - 1, p), "purescriptString") == -1
+    return p
   endif
 
   if prevline =~ '^\S'
