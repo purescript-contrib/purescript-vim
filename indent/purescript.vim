@@ -236,7 +236,7 @@ function! GetPurescriptIndent()
 
   let s = match(prevline, '\<do\>\s*$')
   if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
-    return s + g:purescript_indent_do
+    return match(prevline, '\S') + g:purescript_indent_do
   endif
 
   let s = match(prevline, '\<do\>\s\+\zs\S\+.*$')
