@@ -63,7 +63,7 @@ if !exists('g:purescript_indent_dot')
 endif
 
 setlocal indentexpr=GetPurescriptIndent()
-setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,=→,==>,=⇒,=else
+setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,=→,==>,=⇒
 
 function! s:GetSynStack(lnum, col)
   return map(synstack(a:lnum, a:col), { key, val -> synIDattr(val, "name") })
