@@ -108,10 +108,16 @@ function! GetPurescriptIndent()
   endif
 
   let s = match(prevline, '[[:alnum:][:blank:]]\@<=|[[:alnum:][:blank:]$]')
-  if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), "purescriptFunctionDecl") == -1
-    " ident pattern quards but not if we are in a type declaration
+  if s >= 0 && prevline !~ '^class\>' && index(s:GetSynStack(v:lnum - 1, s), "purescriptFunctionDecl") == -1
+    " ident pattern guards but not if we are in a type declaration
     " what we detect using syntax groups
-    return s
+    if prevline =~ '|\s*otherwise\>'
+      return indent(search('^\s*\k', 'bnW'))
+      " somehow this pattern does not work :/
+      " return indent(search('^\(\s*|\)\@!', 'bnW'))
+    else
+      return s
+    endif
   endif
 
   let s = match(line, '\%(\\.\{-}\)\@<=->')
