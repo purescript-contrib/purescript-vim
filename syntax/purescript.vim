@@ -37,7 +37,7 @@ syn region purescriptTypeExport matchgroup=purescriptType start="\<[A-Z]\(\S\&[^
 syn match purescriptFunction "\%(\<instance\s\+\|\<class\s\+\)\@18<!\<[_a-z]\(\w\|\'\)*\>" contained
 " syn match purescriptFunction "\<[_a-z]\(\w\|\'\)*\>" contained
 syn match purescriptFunction "(\%(\<class\s\+\)\@18<!\(\W\&[^(),\"]\)\+)" contained extend
-syn match purescriptBacktick "`[_A-Za-z][A-Za-z0-9_]*`"
+syn match purescriptBacktick "`[_A-Za-z][A-Za-z0-9_\.]*`"
 
 " Class
 syn region purescriptClassDecl start="^\%(\s*\)class\>"ms=e-5 end="\<where\>\|$"
