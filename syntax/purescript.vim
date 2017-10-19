@@ -55,7 +55,7 @@ syn match purescriptModuleKeyword "\<module\>"
 syn match purescriptModule "^module\>\s\+\<\(\w\+\.\?\)*\>"
   \ contains=purescriptModuleKeyword,purescriptModuleName
   \ nextgroup=purescriptModuleParams skipwhite skipnl skipempty
-syn region purescriptModuleParams start="(" end=")" fold contained keepend
+syn region purescriptModuleParams start="(" skip="([^)]\{-})" end=")" fold contained keepend
   \ contains=purescriptClassDecl,purescriptClass,purescriptClassName,purescriptDelimiter,purescriptType,purescriptTypeExport,purescriptFunction,purescriptStructure,purescriptModuleKeyword,@purescriptComment
   \ nextgroup=purescriptImportParams skipwhite
 
