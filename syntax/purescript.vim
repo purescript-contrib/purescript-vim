@@ -138,14 +138,14 @@ syn match purescriptTypeAliasStart "^type\s\+\([A-Z]\w*\)" contained
 
 " String
 syn match purescriptChar "'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'"
-syn region purescriptString start=+"+ skip=+\\\\\|\\"+ end=+"+
-syn region purescriptMultilineString start=+"""+ end=+"""+ fold
+syn region purescriptString start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=@Spell
+syn region purescriptMultilineString start=+"""+ end=+"""+ fold contains=@Spell
 
 " Comment
-syn match purescriptLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$"
+syn match purescriptLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=@Spell
 syn region purescriptBlockComment start="{-" end="-}" fold
-  \ contains=purescriptBlockComment
-syn cluster purescriptComment contains=purescriptLineComment,purescriptBlockComment
+  \ contains=purescriptBlockComment,@Spell
+syn cluster purescriptComment contains=purescriptLineComment,purescriptBlockComment,@Spell
 
 syn sync minlines=50
 
