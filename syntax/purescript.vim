@@ -61,17 +61,27 @@ syn region purescriptModuleParams start="(" skip="([^)]\{-})" end=")" fold conta
 
 " Import
 syn match purescriptImportKeyword "\<\(foreign\|import\|qualified\)\>"
-syn keyword purescriptAsKeyword as contained
-syn keyword purescriptHidingKeyword hiding contained
-syn match purescriptImport "\<import\>\s\+\(qualified\s\+\)\?\<\(\w\+\.\?\)*\>"
+syn match purescriptImport "\<import\>\s\+\(qualified\s\+\)\?\<\(\w\+\.\?\)*"
   \ contains=purescriptImportKeyword,purescriptModuleName
-  \ nextgroup=purescriptModuleParams,purescriptImportParams skipwhite
-syn match purescriptImportParams "as\s\+\(\w\+\)" contained
-  \ contains=purescriptModuleName,purescriptAsKeyword
-  \ nextgroup=purescriptModuleParams,purescriptImportParams skipwhite
-syn match purescriptImportParams "hiding" contained
+  \ nextgroup=purescriptImportParams,purescriptImportAs,purescriptImportHiding
+  \ skipwhite
+syn region purescriptImportParams
+  \ start="("
+  \ skip="([^)]\{-})"
+  \ end=")"
+  \ contained
+  \ contains=purescriptClass,purescriptClassName,purescriptStructure,purescriptType
+  \ nextgroup=purescriptImportAs
+  \ skipwhite
+syn keyword purescriptAsKeyword as contained
+syn match purescriptImportAs "\<as\>\_s\+\u\w*"
+  \ contains=purescriptAsKeyword,purescriptModuleName
+syn keyword purescriptHidingKeyword hiding contained
+syn match purescriptImportHiding "hiding"
+  \ contained
   \ contains=purescriptHidingKeyword
-  \ nextgroup=purescriptModuleParams,purescriptImportParams skipwhite
+  \ nextgroup=purescriptImportParams
+  \ skipwhite
 
 " Function declaration
 syn region purescriptFunctionDecl
@@ -95,7 +105,6 @@ syn match purescriptForall "∀"
 syn keyword purescriptConditional if then else
 syn keyword purescriptStatement do case of in
 syn keyword purescriptLet let
-" syn keyword purescriptClass class
 syn keyword purescriptWhere where
 syn match purescriptStructure "\<\(data\|newtype\|type\|kind\)\>"
   \ nextgroup=purescriptType skipwhite
