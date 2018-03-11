@@ -18,20 +18,21 @@ syn keyword purescriptBoolean true false
 " Delimiters
 syn match purescriptDelimiter "[,;|.()[\]{}]"
 
-" Constructor
-syn match purescriptConstructor "\%(\<class\s\+\)\@15<!\<[A-Z]\w*\>"
-syn region purescriptConstructorDecl matchgroup=purescriptConstructor start="\<[A-Z]\w*\>" end="\(|\|$\)"me=e-1,re=e-1 contained
-  \ containedin=purescriptData,purescriptNewtype
-  \ contains=purescriptType,purescriptTypeVar,purescriptDelimiter,purescriptOperatorType,purescriptOperatorTypeSig,@purescriptComment
-
 " Type
-syn match purescriptType "\%(\<class\s\+\)\@15<!\<[A-Z]\w*\>" contained
+syn match purescriptType "\%(\<class\s\+\)\@15<!\<\u\w*\>" contained
   \ containedin=purescriptTypeAlias
   \ nextgroup=purescriptType,purescriptTypeVar skipwhite
 syn match purescriptTypeVar "\<[_a-z]\(\w\|\'\)*\>" contained
   \ containedin=purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptFunctionDecl
 syn region purescriptTypeExport matchgroup=purescriptType start="\<[A-Z]\(\S\&[^,.]\)*\>("rs=e-1 matchgroup=purescriptDelimiter end=")" contained extend
   \ contains=purescriptConstructor,purescriptDelimiter
+
+" Constructor
+syn match purescriptConstructor "\%(\<class\s\+\)\@15<!\<\u\w*\>"
+syn region purescriptConstructorDecl matchgroup=purescriptConstructor start="\<[A-Z]\w*\>" end="\(|\|$\)"me=e-1,re=e-1 contained
+  \ containedin=purescriptData,purescriptNewtype
+  \ contains=purescriptType,purescriptTypeVar,purescriptDelimiter,purescriptOperatorType,purescriptOperatorTypeSig,@purescriptComment
+
 
 " Function
 syn match purescriptFunction "\%(\<instance\s\+\|\<class\s\+\)\@18<!\<[_a-z]\(\w\|\'\)*\>" contained
@@ -73,12 +74,13 @@ syn region purescriptImportParams
   \ skip="([^)]\{-})"
   \ end=")"
   \ contained
-  \ contains=purescriptClass,purescriptClassName,purescriptStructure,purescriptType
+  \ contains=purescriptClass,purescriptClass,purescriptStructure,purescriptType,purescriptIdentifier
   \ nextgroup=purescriptImportAs
   \ skipwhite
 syn keyword purescriptAsKeyword as contained
 syn match purescriptImportAs "\<as\>\_s\+\u\w*"
   \ contains=purescriptAsKeyword,purescriptModuleName
+  \ nextgroup=purescriptModuleName
 syn keyword purescriptHidingKeyword hiding contained
 syn match purescriptImportHiding "hiding"
   \ contained
@@ -165,6 +167,7 @@ syn sync minlines=50
 highlight def link purescriptModule Include
 highlight def link purescriptImport Include
 highlight def link purescriptModuleKeyword purescriptKeyword
+highlight def link purescriptImportAs Include
 highlight def link purescriptModuleName Include
 highlight def link purescriptModuleParams purescriptDelimiter
 highlight def link purescriptImportKeyword purescriptKeyword
