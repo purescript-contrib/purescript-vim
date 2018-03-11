@@ -50,13 +50,16 @@ syn match purescriptClass "\<class\>" containedin=purescriptClassDecl contained
 syn match purescriptClassName "\<[A-Z]\w*\>" containedin=purescriptClassDecl contained
 
 " Module
-syn match purescriptModuleName "\(\w\+\.\?\)*" contained excludenl
+syn match purescriptModuleName "\(\u\w\*\.\?\)*" contained excludenl
 syn match purescriptModuleKeyword "\<module\>"
 syn match purescriptModule "^module\>\s\+\<\(\w\+\.\?\)*\>"
   \ contains=purescriptModuleKeyword,purescriptModuleName
-  \ nextgroup=purescriptModuleParams skipwhite skipnl skipempty
+  \ nextgroup=purescriptModuleParams
+  \ skipwhite
+  \ skipnl
+  \ skipempty
 syn region purescriptModuleParams start="(" skip="([^)]\{-})" end=")" fold contained keepend
-  \ contains=purescriptClassDecl,purescriptClass,purescriptClassName,purescriptDelimiter,purescriptType,purescriptTypeExport,purescriptFunction,purescriptStructure,purescriptModuleKeyword,@purescriptComment
+  \ contains=purescriptClassDecl,purescriptClass,purescriptClassName,purescriptDelimiter,purescriptType,purescriptTypeExport,purescriptStructure,purescriptModuleKeyword,@purescriptComment
   \ nextgroup=purescriptImportParams skipwhite
 
 " Import
@@ -159,6 +162,8 @@ syn cluster purescriptComment contains=purescriptLineComment,purescriptBlockComm
 syn sync minlines=50
 
 " highlight links
+highlight def link purescriptModule Include
+highlight def link purescriptImport Include
 highlight def link purescriptModuleKeyword purescriptKeyword
 highlight def link purescriptModuleName Include
 highlight def link purescriptModuleParams purescriptDelimiter
