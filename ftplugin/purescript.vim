@@ -1,4 +1,4 @@
-setlocal comments=s1fl:{-,mb:\ \ ,ex:-},:--\ \|,:--
+setlocal comments=s1fl:{-,mb:\ \ ,ex:-},:--\ \|,:-- commentstring=--\ %s
 setlocal include=^import
 setlocal includeexpr=printf('%s.purs',substitute(v:fname,'\\.','/','g'))
 
