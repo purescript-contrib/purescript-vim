@@ -101,7 +101,7 @@ function! GetPurescriptIndent()
     return s
   endif
 
-  if prevline =~ '^\S.*::' && line !~ '^\s*\(\.\|->\|→\|=>\|⇒\)' && !~ '^instance'
+  if prevline =~ '^\S.*::' && line !~ '^\s*\(\.\|->\|→\|=>\|⇒\)' && prevline !~ '^instance'
     " f :: String
     "	-> String
     return 0
