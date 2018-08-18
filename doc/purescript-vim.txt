@@ -30,5 +30,43 @@ Control indent width of key word `case`. default is 5.
     >>>>>(y:ys) -> ...
 <
 
+                                                     *g:purescript_indent_let*
+Control indent width of key word `let`. default is 4.
+>
+    let x = 0 in
+    >>>>x
+<
+
+                                                      *g:purescript_indent_in*
+Control indent width of key word `in`. default is 1.
+>
+    let x = 0
+    >in
+<
+
+                                                   *g:purescript_indent_where*
+Control indent width of key word `where`. default is 6.
+>
+    where
+    >>f :: Int -> Int
+    >>f x = x
+<
+
+                                                      *g:purescript_indent_do*
+Control indent width of key word `do`. default is 3.
+>
+    do x <- a
+    >>>y <- b
+<
+
+                                                     *g:purescript_indent_dot*
+Control indent width of dot. default is 1.
+>
+    f
+      :: forall a
+      >. String
+      -> String
+<
+
 
 vim:tw=78:ts=8:ft=help:norl:
