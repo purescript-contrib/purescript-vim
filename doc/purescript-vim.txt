@@ -59,13 +59,6 @@ Control indent width of key word `do`. default is 3.
     >>>y <- b
 <
 
-                                                      *g:purescript_indent_in*
-Control indent width of key word `in`. default is 1.
->
-    let x = 0
-    ">in x
-<
-
                                                      *g:purescript_indent_dot*
 Control indent width of dot. default is 1.
 >

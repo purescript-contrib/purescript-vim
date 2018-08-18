@@ -66,16 +66,6 @@ if !exists('g:purescript_indent_do')
   let g:purescript_indent_do = 3
 endif
 
-if !exists('g:purescript_indent_in')
-  ""
-  " Control indent width of key word `in`. default is 1.
-  " >
-  "     let x = 0
-  "     ">in x
-  " <
-  let g:purescript_indent_in = 3
-endif
-
 if !exists('g:purescript_indent_dot')
   ""
   " Control indent width of dot. default is 1.
