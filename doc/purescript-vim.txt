@@ -1,0 +1,14 @@
+*purescript-vim.txt*	purescript support for SpaceVim
+wsdjeg                                                        *purescript-vim*
+
+==============================================================================
+CONTENTS                                             *purescript-vim-contents*
+  1. Introduction.......................................|purescript-vim-intro|
+
+==============================================================================
+INTRODUCTION                                            *purescript-vim-intro*
+
+purescript-vim provides purescript language support in vim and neovim.
+
+
+vim:tw=78:ts=8:ft=help:norl:
