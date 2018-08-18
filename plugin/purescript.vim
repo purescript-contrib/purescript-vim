@@ -50,8 +50,8 @@ if !exists('g:purescript_indent_where')
   " Control indent width of key word `where`. default is 6.
   " >
   "     where
-  "     >>f :: Int -> Int
-  "     >>f x = x
+  "     >>>>>>f :: Int -> Int
+  "     >>>>>>f x = x
   " <
   let g:purescript_indent_where = 6
 endif
@@ -64,6 +64,16 @@ if !exists('g:purescript_indent_do')
   "     >>>y <- b
   " <
   let g:purescript_indent_do = 3
+endif
+
+if !exists('g:purescript_indent_in')
+  ""
+  " Control indent width of key word `in`. default is 1.
+  " >
+  "     let x = 0
+  "     ">in x
+  " <
+  let g:purescript_indent_in = 3
 endif
 
 if !exists('g:purescript_indent_dot')

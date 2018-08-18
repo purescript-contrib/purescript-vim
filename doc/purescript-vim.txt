@@ -48,8 +48,8 @@ Control indent width of key word `in`. default is 1.
 Control indent width of key word `where`. default is 6.
 >
     where
-    >>f :: Int -> Int
-    >>f x = x
+    >>>>>>f :: Int -> Int
+    >>>>>>f x = x
 <
 
                                                       *g:purescript_indent_do*
@@ -57,6 +57,13 @@ Control indent width of key word `do`. default is 3.
 >
     do x <- a
     >>>y <- b
+<
+
+                                                      *g:purescript_indent_in*
+Control indent width of key word `in`. default is 1.
+>
+    let x = 0
+    ">in x
 <
 
                                                      *g:purescript_indent_dot*

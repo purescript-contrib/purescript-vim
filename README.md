@@ -79,7 +79,7 @@ let x = 0
 >in x
 ```
 
-- `let g:purescript_indent_dot = v:true`
+- `let g:purescript_indent_dot = 1`
 
 ```text
 unsnoc
