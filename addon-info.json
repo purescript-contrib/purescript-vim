@@ -1,6 +1,6 @@
 {
   "name": "purescript-vim",
-  "description": "purescript support for SpaceVim",
-  "author": "wsdjeg"
+  "description": "purescript language support in vim and neovim",
+  "author": ""
 }
 

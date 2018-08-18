@@ -19,6 +19,14 @@ if !exists('g:purescript_indent_if')
   " if bool
   " >>>then ...
   " >>>else ...
+
+  ""
+  " Control indent width of key word `if`. default is 3.
+  " >
+  "     if bool
+  "     >>>then ...
+  "     >>>else ...
+  " <
   let g:purescript_indent_if = 3
 endif
 

@@ -4,11 +4,23 @@ wsdjeg                                                        *purescript-vim*
 ==============================================================================
 CONTENTS                                             *purescript-vim-contents*
   1. Introduction.......................................|purescript-vim-intro|
+  2. Configuration.....................................|purescript-vim-config|
 
 ==============================================================================
 INTRODUCTION                                            *purescript-vim-intro*
 
 purescript-vim provides purescript language support in vim and neovim.
+
+==============================================================================
+CONFIGURATION                                          *purescript-vim-config*
+
+                                                      *g:purescript_indent_if*
+Control indent width of key word `if`. default is 3.
+>
+    if bool
+    >>>then ...
+    >>>else ...
+<
 
 
 vim:tw=78:ts=8:ft=help:norl:
