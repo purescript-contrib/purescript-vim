@@ -3,9 +3,6 @@
 " purescript-vim provides purescript language support in vim and neovim.
 
 if !exists('g:purescript_indent_if')
-  " if bool
-  " >>>then ...
-  " >>>else ...
 
   ""
   " Control indent width of key word `if`. default is 3.
@@ -18,9 +15,13 @@ if !exists('g:purescript_indent_if')
 endif
 
 if !exists('g:purescript_indent_case')
-  " case xs of
-  " >>>>>[]     -> ...
-  " >>>>>(y:ys) -> ...
+  ""
+  " Control indent width of key word `case`. default is 5.
+  " >
+  "     case xs of
+  "     >>>>>[]     -> ...
+  "     >>>>>(y:ys) -> ...
+  " <
   let g:purescript_indent_case = 5
 endif
 

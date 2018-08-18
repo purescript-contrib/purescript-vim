@@ -22,12 +22,12 @@ Control indent width of key word `if`. default is 3.
     >>>else ...
 <
 
-                                                      *g:purescript_indent_if*
-Control indent width of key word `if`. default is 3.
+                                                    *g:purescript_indent_case*
+Control indent width of key word `case`. default is 5.
 >
-    if bool
-    >>>then ...
-    >>>else ...
+    case xs of
+    >>>>>[]     -> ...
+    >>>>>(y:ys) -> ...
 <
 
 
