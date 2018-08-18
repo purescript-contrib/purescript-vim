@@ -2,8 +2,6 @@
 
 > purescript language support in vim and neovim 
 
-* * *
-
 [![Maintainer: coot](https://img.shields.io/badge/maintainer-coot-lightgrey.svg)](http://github.com/coot)
 
 Syntax highlighting and indentation for [Purescript][] based on [idris-vim][] and [haskell-vim][].
@@ -39,42 +37,56 @@ To configure indentation in `purescript-vim` you can use the following variables
 
 - `let g:purescript_indent_if = 3`
 
-    if bool
-    >>>then ...
-    >>>else ...
+```text
+if bool
+>>>then ...
+>>>else ...
+```
 
 - `let g:purescript_indent_case = 5`
 
-    case xs of
-    >>>>>[]     -> ...
-    >>>>>(y:ys) -> ...
+```text
+case xs of
+>>>>>[]     -> ...
+>>>>>(y:ys) -> ...
+```
 
 - `let g:purescript_indent_let = 4`
 
-    let x = 0 in
-    >>>>x
+```text
+let x = 0 in
+>>>>x
+```
 
 - `let g:purescript_indent_where = 6`
 
-    where f :: Int -> Int
-    >>>>>>f x = x
+```text
+where f :: Int -> Int
+>>>>>>f x = x
+```
 
 - `let g:purescript_indent_do = 3`
 
-    do x <- a
-    >>>y <- b
+```text
+do x <- a
+>>>y <- b
+```
 
 - `let g:purescript_indent_in = 1`
 
-    let x = 0
-    >in x
+```text
+let x = 0
+>in x
+```
 
 - `let g:purescript_indent_dot = v:true`
 
-    unsnoc
-      :: forall a
-      >. List a
-      -> Maybe (List a, a)
+```text
+unsnoc
+  :: forall a
+  >. List a
+  -> Maybe (List a, a)
+```
 
 [purescript]: http://www.purescript.org
 
