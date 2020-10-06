@@ -1,8 +1,6 @@
 Purescript Syntax/Indentation
 =============================
 
-[![Maintainer: coot](https://img.shields.io/badge/maintainer-coot-lightgrey.svg)](http://github.com/coot)
-
 Syntax highlighting and indentation for [Purescript][] based on [idris-vim][] and [haskell-vim][].
 
 ## Installation
