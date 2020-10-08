@@ -11,7 +11,7 @@ I recommend using [Pathogen][] for installation. Simply clone
 this repo into your `~/.vim/bundle` directory and you are ready to go.
 
     cd ~/.vim/bundle
-    git clone https://github.com/purescript-vim/purescript-vim.git
+    git clone https://github.com/purescript-contrib/purescript-vim.git
 
 ### Manual Installation
 
