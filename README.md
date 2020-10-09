@@ -111,6 +111,16 @@ let g:purescript_indent_dot = 1
 	  -> Maybe (List a, a)
 ```
 
+## Contributing
+
+Contributing checklist:
+
+- [ ] Opened an issue before investing a significant amount of work into changes
+- [ ] Update README.md with any new configuration options and behavior
+- [ ] Update CHANGELOG.md with the proposed changes
+- [ ] Run `generate-doc.sh` to re-generate the documentation
+
+
 [Purescript]: http://www.purescript.org
 [Pathogen]: https://github.com/tpope/vim-pathogen
 [idris-vim]: https://github.com/idris-hackers/idris-vim
