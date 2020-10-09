@@ -42,22 +42,10 @@ Save and restart (neo)vim and run `:PlugInstall`.
 
 To configure indentation in `purescript-vim` you can use the following variables:
 
-#### purescript_ident_if
+#### g:purescript_indent_case
 
 ```vim
-let purescript_indent_if = 3
-```
-
-```purescript
-        if bool
-        >>>then ...
-        >>>else ...
-```
-
-#### purescript_indent_case
-
-```vim
-let purescript_indent_case = 5
+let g:purescript_indent_case = 5
 ```
 
 ```purescript
@@ -66,10 +54,10 @@ let purescript_indent_case = 5
         >>>>>(y:ys) -> ...
 ```
 
-#### purescript_indent_let
+#### g:purescript_indent_let
 
 ```vim
-let purescript_indent_let = 4
+let g:purescript_indent_let = 4
 ```
 
 ```purescript
@@ -77,32 +65,10 @@ let purescript_indent_let = 4
         >>>>x
 ```
 
-#### purescript_indent_where
+#### g:purescript_indent_in
 
 ```vim
-let purescript_indent_where = 6
-```
-
-```purescript
-        where f :: Int -> Int
-        >>>>>>f x = x
-```
-
-#### purescript_indent_do
-
-```vim
-let purescript_indent_do = 3
-```
-
-```purescript
-        do x <- a
-        >>>y <- b
-```
-
-#### purescript_indent_in
-
-```vim
-let purescript_indent_in = 1
+let g:purescript_indent_in = 1
 ```
 
 ```purescript
@@ -110,10 +76,32 @@ let purescript_indent_in = 1
 	>in x
 ```
 
-#### purescript_indent_dot
+#### g:purescript_indent_where
 
 ```vim
-let purescript_indent_dot = v:true
+let g:purescript_indent_where = 6
+```
+
+```purescript
+        where f :: Int -> Int
+        >>>>>>f x = x
+```
+
+#### g:purescript_indent_do
+
+```vim
+let g:purescript_indent_do = 3
+```
+
+```purescript
+        do x <- a
+        >>>y <- b
+```
+
+#### g:purescript_indent_dot
+
+```vim
+let g:purescript_indent_dot = 1
 ```
 
 ```purescript

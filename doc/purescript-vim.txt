@@ -7,13 +7,12 @@
 |purescript-plug-vim|    plug-vim
 |purescript-Configuration|    Configuration
 |purescript-Indentation|    Indentation
-|purescript-purescript_ident_if|    purescript_ident_if
-|purescript-purescript_indent_case|    purescript_indent_case
-|purescript-purescript_indent_let|    purescript_indent_let
-|purescript-purescript_indent_where|    purescript_indent_where
-|purescript-purescript_indent_do|    purescript_indent_do
-|purescript-purescript_indent_in|    purescript_indent_in
-|purescript-purescript_indent_dot|    purescript_indent_dot
+|purescript-g-purescript_indent_case|    g:purescript_indent_case
+|purescript-g-purescript_indent_let|    g:purescript_indent_let
+|purescript-g-purescript_indent_in|    g:purescript_indent_in
+|purescript-g-purescript_indent_where|    g:purescript_indent_where
+|purescript-g-purescript_indent_do|    g:purescript_indent_do
+|purescript-g-purescript_indent_dot|    g:purescript_indent_dot
 
 PURESCRIPT-VIM                *purescript-intro*
 
@@ -69,23 +68,10 @@ INDENTATION                *purescript-Indentation*
 To configure indentation in `purescript-vim` you can use the following variables:
 
 
-PURESCRIPT_IDENT_IF                *purescript-purescript_ident_if*
+G:PURESCRIPT_INDENT_CASE                *purescript-g-purescript_indent_case*
 
 >
-    let purescript_indent_if = 3
-<
-
->
-    if bool
-            >>>then ...
-            >>>else ...
-<
-
-
-PURESCRIPT_INDENT_CASE                *purescript-purescript_indent_case*
-
->
-    let purescript_indent_case = 5
+    let g:purescript_indent_case = 5
 <
 
 >
@@ -95,10 +81,10 @@ PURESCRIPT_INDENT_CASE                *purescript-purescript_indent_case*
 <
 
 
-PURESCRIPT_INDENT_LET                *purescript-purescript_indent_let*
+G:PURESCRIPT_INDENT_LET                *purescript-g-purescript_indent_let*
 
 >
-    let purescript_indent_let = 4
+    let g:purescript_indent_let = 4
 <
 
 >
@@ -107,34 +93,10 @@ PURESCRIPT_INDENT_LET                *purescript-purescript_indent_let*
 <
 
 
-PURESCRIPT_INDENT_WHERE                *purescript-purescript_indent_where*
+G:PURESCRIPT_INDENT_IN                *purescript-g-purescript_indent_in*
 
 >
-    let purescript_indent_where = 6
-<
-
->
-    where f :: Int -> Int
-            >>>>>>f x = x
-<
-
-
-PURESCRIPT_INDENT_DO                *purescript-purescript_indent_do*
-
->
-    let purescript_indent_do = 3
-<
-
->
-    do x <- a
-            >>>y <- b
-<
-
-
-PURESCRIPT_INDENT_IN                *purescript-purescript_indent_in*
-
->
-    let purescript_indent_in = 1
+    let g:purescript_indent_in = 1
 <
 
 >
@@ -143,10 +105,34 @@ PURESCRIPT_INDENT_IN                *purescript-purescript_indent_in*
 <
 
 
-PURESCRIPT_INDENT_DOT                *purescript-purescript_indent_dot*
+G:PURESCRIPT_INDENT_WHERE                *purescript-g-purescript_indent_where*
 
 >
-    let purescript_indent_dot = v:true
+    let g:purescript_indent_where = 6
+<
+
+>
+    where f :: Int -> Int
+            >>>>>>f x = x
+<
+
+
+G:PURESCRIPT_INDENT_DO                *purescript-g-purescript_indent_do*
+
+>
+    let g:purescript_indent_do = 3
+<
+
+>
+    do x <- a
+            >>>y <- b
+<
+
+
+G:PURESCRIPT_INDENT_DOT                *purescript-g-purescript_indent_dot*
+
+>
+    let g:purescript_indent_dot = 1
 <
 
 >
