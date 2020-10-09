@@ -6,12 +6,12 @@ Notable changes to this project are documented in this file. The format is based
 
 Breaking changes (😱!!!):
   - use "-- %s" instead of "{--%s--}" for comemnts [p68][]
-  - rename all indentation settings to be prefixed by `g:` [p73][]
 
 New features:
   - add vim manual (`:help purescript-vim`) [p73][]
 
 Bugfixes:
+  - docs did not reflect the code in using the `g:` prefix for indentation configuration [p73][]
 
 Other improvements:
   - rename default branch to 'main', clarify readme, add changelog [p73][]
