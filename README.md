@@ -26,7 +26,7 @@ If you are using [Pathogen][], clone this repo into your `~/.vim/bundle` directo
 cd ~/.vim/bundle
 git clone https://github.com/purescript-contrib/purescript-vim.git
 ```
-### plug-vim
+### vim-plug
 
 If you are using [vim-plug][], add the following line in between your `plug#begin` and `plug#end` calls for your vim config file:
 
