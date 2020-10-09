@@ -5,16 +5,16 @@ Notable changes to this project are documented in this file. The format is based
 ## [Unreleased]
 
 Breaking changes (😱!!!):
-  - use "-- %s" instead of "{--%s--}" for comemnts
+  - use "-- %s" instead of "{--%s--}" for comemnts [p68][]
+  - rename all indentation settings to be prefixed by `g:` [p73][]
 
 New features:
+  - add vim manual (`:help purescript-vim`) [p73][]
 
 Bugfixes:
 
 Other improvements:
-  - rename default branch to 'main'
-  - clarify readme
-  - add changelog
+  - rename default branch to 'main', clarify readme, add changelog [p73][]
 
 ## [v1.0.0](https://github.com/purescript-contrib/purescript-vim/releases/tag/v1.0.0) - 2017-10-19
 
@@ -57,3 +57,6 @@ class RowLacking (entry :: Type)
 * Fixed #48
 
 * Fixed #49
+
+[p68][https://github.com/purescript-contrib/purescript-vim/pull/70]
+[p73][https://github.com/purescript-contrib/purescript-vim/pull/73]

@@ -42,7 +42,11 @@ Save and restart (neo)vim and run `:PlugInstall`.
 
 To configure indentation in `purescript-vim` you can use the following variables:
 
-* `let purescript_indent_if = 3`
+#### purescript_ident_if
+
+```vim
+let purescript_indent_if = 3
+```
 
 ```purescript
         if bool
@@ -50,7 +54,11 @@ To configure indentation in `purescript-vim` you can use the following variables
         >>>else ...
 ```
 
-* `let purescript_indent_case = 5`
+#### purescript_indent_case
+
+```vim
+let purescript_indent_case = 5
+```
 
 ```purescript
         case xs of
@@ -58,35 +66,55 @@ To configure indentation in `purescript-vim` you can use the following variables
         >>>>>(y:ys) -> ...
 ```
 
-* `let purescript_indent_let = 4`
+#### purescript_indent_let
+
+```vim
+let purescript_indent_let = 4
+```
 
 ```purescript
         let x = 0 in
         >>>>x
 ```
 
-* `let purescript_indent_where = 6`
+#### purescript_indent_where
+
+```vim
+let purescript_indent_where = 6
+```
 
 ```purescript
         where f :: Int -> Int
         >>>>>>f x = x
 ```
 
-* `let purescript_indent_do = 3`
+#### purescript_indent_do
+
+```vim
+let purescript_indent_do = 3
+```
 
 ```purescript
         do x <- a
         >>>y <- b
 ```
 
-* `let purescript_indent_in = 1`
+#### purescript_indent_in
+
+```vim
+let purescript_indent_in = 1
+```
 
 ```purescript
 	let x = 0
 	>in x
 ```
 
-* `let purescript_indent_dot = v:true`
+#### purescript_indent_dot
+
+```vim
+let purescript_indent_dot = v:true
+```
 
 ```purescript
 	unsnoc
