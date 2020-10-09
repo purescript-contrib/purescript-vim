@@ -1,26 +1,40 @@
-Purescript Syntax/Indentation
-=============================
+# purescript-vim
+[![Maintainer: vladciobanu](https://img.shields.io/badge/maintainer-vladciobanu-lightgrey.svg)](http://github.com/vladciobanu)
 
-Syntax highlighting and indentation for [Purescript][] based on [idris-vim][] and [haskell-vim][].
+[Purescript][] language support for vim and neovim providing syntax highlighting and indentation based on based on [idris-vim][] and [haskell-vim][].
+
+See [purescript-language-server][] for details on how to set up language server support for [Purescript][].
 
 ## Installation
 
-I recommend using [Pathogen][] for installation. Simply clone
-this repo into your `~/.vim/bundle` directory and you are ready to go.
+### Manual Installation (no plugin manager)
 
-    cd ~/.vim/bundle
-    git clone https://github.com/purescript-contrib/purescript-vim.git
+Copy content of this repository into your `~/.vim` directory (or `%HOME%\vimfiles` on Windows).
 
-### Manual Installation
+Be sure that the following lines are in your `.vimrc`
+```vim
+syntax on
+filetype on
+filetype plugin indent on
+```
 
-Copy content into your `~/.vim` directory (or `%HOME%\vimfiles` on Windows).
+### Pathogen
 
-Be sure that the following lines are in your
-`.vimrc`
+If you are using [Pathogen][], clone this repo into your `~/.vim/bundle` directory and you are ready to go.
 
-    syntax on
-    filetype on
-    filetype plugin indent on
+```sh
+cd ~/.vim/bundle
+git clone https://github.com/purescript-contrib/purescript-vim.git
+```
+### plug-vim
+
+If you are using [vim-plug][], add the following line in between your `plug#begin` and `plug#end` calls for your vim config file:
+
+```vim
+Plug 'purescript-contrib/purescript-vim'
+```
+
+Save and restart (neo)vim and run `:PlugInstall`.
 
 ## Configuration
 
@@ -30,45 +44,60 @@ To configure indentation in `purescript-vim` you can use the following variables
 
 * `let purescript_indent_if = 3`
 
+```purescript
         if bool
         >>>then ...
         >>>else ...
+```
 
 * `let purescript_indent_case = 5`
 
+```purescript
         case xs of
         >>>>>[]     -> ...
         >>>>>(y:ys) -> ...
+```
 
 * `let purescript_indent_let = 4`
 
+```purescript
         let x = 0 in
         >>>>x
+```
 
 * `let purescript_indent_where = 6`
 
+```purescript
         where f :: Int -> Int
         >>>>>>f x = x
+```
 
 * `let purescript_indent_do = 3`
 
+```purescript
         do x <- a
         >>>y <- b
+```
 
 * `let purescript_indent_in = 1`
 
+```purescript
 	let x = 0
 	>in x
+```
 
 * `let purescript_indent_dot = v:true`
 
+```purescript
 	unsnoc
 	  :: forall a
 	  >. List a
 	  -> Maybe (List a, a)
-
+```
 
 [Purescript]: http://www.purescript.org
 [Pathogen]: https://github.com/tpope/vim-pathogen
 [idris-vim]: https://github.com/idris-hackers/idris-vim
 [haskell-vim]: https://github.com/raichoo/haskell-vim
+[vim-plug]: https://github.com/junegunn/vim-plug
+[purescript-language-server]: https://github.com/nwolverson/purescript-language-server#vimcoc
