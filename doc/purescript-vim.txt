@@ -1,0 +1,147 @@
+*purescript-vim.txt*    [![Maintainer: vladciobanu](https://img.shields.io/badge/maintainer-vladciobanu-lightgrey.svg)](http://github.com/vladciobanu)
+
+|purescript-intro|    purescript-vim
+|purescript-Installation|    Installation
+|purescript-Manual-Installation-no-plugin-manager|    Manual Installation (no plugin manager)
+|purescript-Pathogen|    Pathogen
+|purescript-plug-vim|    plug-vim
+|purescript-Configuration|    Configuration
+|purescript-Indentation|    Indentation
+|purescript-g-purescript_indent_case|    g:purescript_indent_case
+|purescript-g-purescript_indent_let|    g:purescript_indent_let
+|purescript-g-purescript_indent_in|    g:purescript_indent_in
+|purescript-g-purescript_indent_where|    g:purescript_indent_where
+|purescript-g-purescript_indent_do|    g:purescript_indent_do
+|purescript-g-purescript_indent_dot|    g:purescript_indent_dot
+
+PURESCRIPT-VIM                *purescript-intro*
+
+[![Maintainer: vladciobanu](https://img.shields.io/badge/maintainer-vladciobanu-lightgrey.svg)](http://github.com/vladciobanu)
+
+[Purescript][] language support for vim and neovim providing syntax highlighting and indentation based on based on [idris-vim][] and [haskell-vim][].
+
+See [purescript-language-server][] for details on how to set up language server support for [Purescript][].
+
+
+INSTALLATION                *purescript-Installation*
+
+
+MANUAL INSTALLATION (NO PLUGIN MANAGER)                *purescript-Manual-Installation-no-plugin-manager*
+
+Copy content of this repository into your `~/.vim` directory (or `%HOME%\vimfiles` on Windows).
+
+Be sure that the following lines are in your `.vimrc`
+
+>
+    syntax on
+    filetype on
+    filetype plugin indent on
+<
+
+
+PATHOGEN                *purescript-Pathogen*
+
+If you are using [Pathogen][], clone this repo into your `~/.vim/bundle` directory and you are ready to go.
+
+>
+    cd ~/.vim/bundle
+    git clone https://github.com/purescript-contrib/purescript-vim.git
+<
+
+
+PLUG-VIM                *purescript-plug-vim*
+
+If you are using [vim-plug][], add the following line in between your `plug#begin` and `plug#end` calls for your vim config file:
+
+>
+    Plug 'purescript-contrib/purescript-vim'
+<
+
+Save and restart (neo)vim and run `:PlugInstall`.
+
+
+CONFIGURATION                *purescript-Configuration*
+
+
+INDENTATION                *purescript-Indentation*
+
+To configure indentation in `purescript-vim` you can use the following variables:
+
+
+G:PURESCRIPT_INDENT_CASE                *purescript-g-purescript_indent_case*
+
+>
+    let g:purescript_indent_case = 5
+<
+
+>
+    case xs of
+            >>>>>[]     -> ...
+            >>>>>(y:ys) -> ...
+<
+
+
+G:PURESCRIPT_INDENT_LET                *purescript-g-purescript_indent_let*
+
+>
+    let g:purescript_indent_let = 4
+<
+
+>
+    let x = 0 in
+            >>>>x
+<
+
+
+G:PURESCRIPT_INDENT_IN                *purescript-g-purescript_indent_in*
+
+>
+    let g:purescript_indent_in = 1
+<
+
+>
+    let x = 0
+        >in x
+<
+
+
+G:PURESCRIPT_INDENT_WHERE                *purescript-g-purescript_indent_where*
+
+>
+    let g:purescript_indent_where = 6
+<
+
+>
+    where f :: Int -> Int
+            >>>>>>f x = x
+<
+
+
+G:PURESCRIPT_INDENT_DO                *purescript-g-purescript_indent_do*
+
+>
+    let g:purescript_indent_do = 3
+<
+
+>
+    do x <- a
+            >>>y <- b
+<
+
+
+G:PURESCRIPT_INDENT_DOT                *purescript-g-purescript_indent_dot*
+
+>
+    let g:purescript_indent_dot = 1
+<
+
+>
+    unsnoc
+          :: forall a
+          >. List a
+          -> Maybe (List a, a)
+<
+
+
+
+vim:tw=78:ts=8:ft=help:norl:

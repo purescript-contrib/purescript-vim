@@ -4,29 +4,18 @@
 "
 " author: raichoo (raichoo@googlemail.com)
 "
-" Modify g:purescript_indent_if and g:purescript_indent_case to
-" change indentation for `if'(default 3) and `case'(default 5).
-" Example (in .vimrc):
-" > let g:purescript_indent_if = 2
 
 if exists('b:did_indent')
   finish
 endif
 
-let b:did_indent = 1
-
-if !exists('g:purescript_indent_if')
-  " if bool
-  " >>>then ...
-  " >>>else ...
-  let g:purescript_indent_if = 3
-endif
+let b:did_indent = 0
 
 if !exists('g:purescript_indent_case')
   " case xs of
   " >>>>>[]     -> ...
   " >>>>>(y:ys) -> ...
-  let g:purescript_indent_case = 5
+  let g:purescript_indent_case = 4
 endif
 
 if !exists('g:purescript_indent_let')
@@ -45,7 +34,7 @@ if !exists('g:purescript_indent_where')
   " where
   " >>f :: Int -> Int
   " >>f x = x
-  let g:purescript_indent_where = 6
+  let g:purescript_indent_where = 2
 endif
 
 if !exists('g:purescript_indent_do')
