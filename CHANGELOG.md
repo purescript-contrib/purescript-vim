@@ -9,7 +9,7 @@ Breaking changes (😱!!!):
 
 New features:
   - add vim manual (`:help purescript-vim`) [p73][]
-  - add setting to disable indentation (`let g:purescript_disable_indent = 1`) [pXX][]
+  - add setting to disable indentation (`let g:purescript_disable_indent = 1`) [p75][]
 
 Bugfixes:
   - docs did not reflect the code in using the `g:` prefix for indentation configuration [p73][]
@@ -61,4 +61,4 @@ class RowLacking (entry :: Type)
 
 [p68][https://github.com/purescript-contrib/purescript-vim/pull/70]
 [p73][https://github.com/purescript-contrib/purescript-vim/pull/73]
-[pXX][]
+[p75][https://github.com/purescript-contrib/purescript-vim/pull/75]
