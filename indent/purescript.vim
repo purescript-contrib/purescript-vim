@@ -5,11 +5,9 @@
 " author: raichoo (raichoo@googlemail.com)
 "
 
-if exists('b:did_indent')
+if exists('g:purescript_disable_indent')
   finish
 endif
-
-let b:did_indent = 0
 
 if !exists('g:purescript_indent_case')
   " case xs of

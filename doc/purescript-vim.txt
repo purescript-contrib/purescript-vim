@@ -4,15 +4,17 @@
 |purescript-Installation|    Installation
 |purescript-Manual-Installation-no-plugin-manager|    Manual Installation (no plugin manager)
 |purescript-Pathogen|    Pathogen
-|purescript-plug-vim|    plug-vim
+|purescript-vim-plug|    vim-plug
 |purescript-Configuration|    Configuration
 |purescript-Indentation|    Indentation
+|purescript-g-purescript_disable_indent|    g:purescript_disable_indent
 |purescript-g-purescript_indent_case|    g:purescript_indent_case
 |purescript-g-purescript_indent_let|    g:purescript_indent_let
 |purescript-g-purescript_indent_in|    g:purescript_indent_in
 |purescript-g-purescript_indent_where|    g:purescript_indent_where
 |purescript-g-purescript_indent_do|    g:purescript_indent_do
 |purescript-g-purescript_indent_dot|    g:purescript_indent_dot
+|purescript-Contributing|    Contributing
 
 PURESCRIPT-VIM                *purescript-intro*
 
@@ -49,7 +51,7 @@ If you are using [Pathogen][], clone this repo into your `~/.vim/bundle` directo
 <
 
 
-PLUG-VIM                *purescript-plug-vim*
+VIM-PLUG                *purescript-vim-plug*
 
 If you are using [vim-plug][], add the following line in between your `plug#begin` and `plug#end` calls for your vim config file:
 
@@ -66,6 +68,15 @@ CONFIGURATION                *purescript-Configuration*
 INDENTATION                *purescript-Indentation*
 
 To configure indentation in `purescript-vim` you can use the following variables:
+
+
+G:PURESCRIPT_DISABLE_INDENT                *purescript-g-purescript_disable_indent*
+
+Disable indentation altogether.
+
+>
+    let g:purescript_indent_case = 1
+<
 
 
 G:PURESCRIPT_INDENT_CASE                *purescript-g-purescript_indent_case*
@@ -141,6 +152,19 @@ G:PURESCRIPT_INDENT_DOT                *purescript-g-purescript_indent_dot*
           >. List a
           -> Maybe (List a, a)
 <
+
+
+CONTRIBUTING                *purescript-Contributing*
+
+Contributing checklist:
+
+[ ] Opened an issue before investing a significant amount of work into changes
+
+[ ] Update README.md with any new configuration options and behavior
+
+[ ] Update CHANGELOG.md with the proposed changes
+
+[ ] Run `generate-doc.sh` to re-generate the documentation
 
 
 

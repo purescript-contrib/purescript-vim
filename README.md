@@ -42,6 +42,14 @@ Save and restart (neo)vim and run `:PlugInstall`.
 
 To configure indentation in `purescript-vim` you can use the following variables:
 
+#### g:purescript_disable_indent
+
+Disable indentation altogether.
+
+```vim
+let g:purescript_indent_case = 1
+```
+
 #### g:purescript_indent_case
 
 ```vim
