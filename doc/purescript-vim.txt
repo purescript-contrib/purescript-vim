@@ -75,7 +75,7 @@ G:PURESCRIPT_DISABLE_INDENT                *purescript-g-purescript_disable_inde
 Disable indentation altogether.
 
 >
-    let g:purescript_indent_case = 1
+    let g:purescript_disable_indent = 1
 <
 
 

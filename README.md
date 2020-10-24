@@ -47,7 +47,7 @@ To configure indentation in `purescript-vim` you can use the following variables
 Disable indentation altogether.
 
 ```vim
-let g:purescript_indent_case = 1
+let g:purescript_disable_indent = 1
 ```
 
 #### g:purescript_indent_case
