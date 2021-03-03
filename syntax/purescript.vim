@@ -156,10 +156,11 @@ syn region purescriptString start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=@Spell
 syn region purescriptMultilineString start=+"""+ end=+"""+ fold contains=@Spell
 
 " Comment
-syn match purescriptLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=@Spell
+syn match purescriptLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=purescriptCommentTodo,@Spell
 syn region purescriptBlockComment start="{-" end="-}" fold
   \ contains=purescriptBlockComment,@Spell
 syn cluster purescriptComment contains=purescriptLineComment,purescriptBlockComment,@Spell
+syn keyword purescriptCommentTodo contained TODO FIXME XXX
 
 syn sync minlines=50
 
