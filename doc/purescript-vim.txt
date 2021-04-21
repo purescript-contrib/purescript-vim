@@ -3,6 +3,7 @@
 |purescript-intro|    purescript-vim
 |purescript-Installation|    Installation
 |purescript-Manual-Installation-no-plugin-manager|    Manual Installation (no plugin manager)
+|purescript-Vim-8-packages|    Vim 8 packages
 |purescript-Pathogen|    Pathogen
 |purescript-vim-plug|    vim-plug
 |purescript-Configuration|    Configuration
@@ -38,6 +39,17 @@ Be sure that the following lines are in your `.vimrc`
     syntax on
     filetype on
     filetype plugin indent on
+<
+
+
+VIM 8 PACKAGES                *purescript-Vim-8-packages*
+
+If you have vim version 8 (`vim --version | head -n1`), you can install plugins with the native pack system:
+
+>
+    mkdir -p ~/.vim/pack/plugins/start/
+    cd ~/.vim/pack/plugins/start/
+    git clone https://github.com/purescript-contrib/purescript-vim.git
 <
 
 

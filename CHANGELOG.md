@@ -17,6 +17,7 @@ Bugfixes:
 
 Other improvements:
   - rename default branch to 'main', clarify readme, add changelog [p73][]
+  - add install instruction for vim 8 packages
 
 ## [v1.0.0](https://github.com/purescript-contrib/purescript-vim/releases/tag/v1.0.0) - 2017-10-19
 
