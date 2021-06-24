@@ -1,39 +1,26 @@
+if exists("*PureScriptSetRoot") | finish | endif
+
 setlocal comments=s1fl:{-,mb:\ \ ,ex:-},:--\ \|,:--
 setlocal commentstring=--\ %s
 setlocal include=^import
-setlocal includeexpr=printf('%s.purs',substitute(v:fname,'\\.','/','g'))
+setlocal includeexpr=substitute(v:fname,'\\.','/','g')).'.purs'
 
-let s:PS = []
-fun! InitPureScript()
-  let dirs = map(
-	\ findfile("psc-package.json", expand("%:p:h") . ";/", -1),
-	\ { idx, val -> fnamemodify(val, ":p:h") }
-	\ )
-  if empty(dirs)
-    let dirs = map(
-	  \ findfile("bower.json", expand("%:p:h") . ";/", -1),
-	  \ { idx, val -> fnamemodify(val, ":p:h") }
-	  \ )
-    if empty(dirs)
-      return
-    endif
-  endif
-
-  let path = expand("%:p")
-  for p in s:PS
-    if stridx(path, p[0], 0) == 0
-      let &l:path=p[1]
-      return
-    endif
+fun PureScriptSetRoot()
+  " search forward and backward (;) for the root of the project
+  " (a dir containing any configuration file)
+  let l:from_here = expand("%:p:h") . ";"
+  for l:conf in ["spago.dhall"]
+    let l:root = get(map(
+      \ findfile(l:conf,l:from_here, -1) ,
+      \ { name -> fnamemodify(name,":p:h") } ),-1,'')
+    if !empty(l:root) | continue | endif
   endfor
-
-  let dir = dirs[len(dirs) - 1]
-  let gp = globpath(dir, "src/**/*.purs", v:true, v:true)
-  if empty(gp)
-    return
-  endif
-
-  let &l:path=join([dir, dir . "/bower_components/**", dir . "/src/**"], ",")
-  call add(s:PS, [dir, &l:path])
+  if empty(l:root) | return | endif
+  exec 'setlocal path+='.l:root.'/src/**'
 endfun
-call InitPureScript()
+
+if exists('g:purescript_set_root')
+  if g:purescript_set_root
+    call InitPureScript()
+  endif
+endif
