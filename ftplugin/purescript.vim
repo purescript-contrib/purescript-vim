@@ -1,3 +1,5 @@
+" vim: sw=2 et
+
 if exists("*PureScriptSetRoot") | finish | endif
 
 setlocal comments=s1fl:{-,mb:\ \ ,ex:-},:--\ \|,:--
