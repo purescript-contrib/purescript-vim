@@ -6,6 +6,7 @@ setlocal comments=s1fl:{-,mb:\ \ ,ex:-},:--\ \|,:--
 setlocal commentstring=--\ %s
 setlocal include=^import
 setlocal includeexpr=substitute(v:fname,'\\.','/','g')).'.purs'
+setlocal efm=%Eat\ %f:%l:%c\ -\ %m
 
 fun PureScriptSetRoot()
   " search forward and backward (;) for the root of the project
