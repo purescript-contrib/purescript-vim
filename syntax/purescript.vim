@@ -160,7 +160,7 @@ syn match purescriptLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contai
 syn region purescriptBlockComment start="{-" end="-}" fold
   \ contains=purescriptBlockComment,@Spell
 syn cluster purescriptComment contains=purescriptLineComment,purescriptBlockComment,@Spell
-syn keyword purescriptCommentTodo contained TODO FIXME XXX
+syn keyword purescriptCommentTodo contained TODO FIXME XXX DEBUG BROKEN REFACTOR REFACT RFCTR OOPS SMELL NEEDSWORK INSPECT
 
 syn sync minlines=50
 
