@@ -11,6 +11,7 @@ New features:
   - add Vim manual (`:help purescript-vim`) [p73][]
   - add setting to disable indentation (`let g:purescript_disable_indent = 1`) [p75][]
   - highlight TODO/FIXME/XXX in comments [p76][]
+  - additional TODO highlighting in comments [p81][]
 
 Bugfixes:
   - docs did not reflect the code in using the `g:` prefix for indentation configuration [p73][]
