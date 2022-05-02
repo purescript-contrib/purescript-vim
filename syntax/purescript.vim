@@ -88,6 +88,7 @@ syn match purescriptImportHiding "hiding"
 	\ contains=purescriptHidingKeyword
 	\ nextgroup=purescriptImportParams
 	\ skipwhite
+syn region purescriptFoldImports start="import" end=/import.*\n^$/ fold transparent keepend
 
 " Function declaration
 syn region purescriptFunctionDecl
