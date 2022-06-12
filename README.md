@@ -1,9 +1,8 @@
 # purescript-vim
-[![Maintainer: vladciobanu](https://img.shields.io/badge/maintainer-vladciobanu-lightgrey.svg)](http://github.com/vladciobanu)
 
-[Purescript][] language support for vim and neovim providing syntax highlighting and indentation based on based on [idris-vim][] and [haskell-vim][].
+[PureScript][] language support for vim and neovim providing syntax highlighting and indentation based on based on [idris-vim][] and [haskell-vim][].
 
-See [purescript-language-server][] for details on how to set up language server support for [Purescript][].
+See [purescript-language-server][] for details on how to set up language server support for [PureScript][].
 
 ## Installation
 
@@ -138,8 +137,7 @@ Contributing checklist:
 - [ ] Update CHANGELOG.md with the proposed changes
 - [ ] Run `generate-doc.sh` to re-generate the documentation
 
-
-[Purescript]: http://www.purescript.org
+[PureScript]: http://www.purescript.org
 [Pathogen]: https://github.com/tpope/vim-pathogen
 [idris-vim]: https://github.com/idris-hackers/idris-vim
 [haskell-vim]: https://github.com/raichoo/haskell-vim
