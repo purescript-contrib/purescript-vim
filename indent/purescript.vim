@@ -50,7 +50,7 @@ if !exists('g:purescript_indent_dot')
 endif
 
 setlocal indentexpr=GetPurescriptIndent()
-setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,=→,==>,=⇒
+setlocal indentkeys=!^F,o,O,},=where,=in,=::,=∷,=->,=→,==>,=⇒
 
 function! s:GetSynStack(lnum, col)
   return map(synstack(a:lnum, a:col), { key, val -> synIDattr(val, "name") })
@@ -88,7 +88,7 @@ function! GetPurescriptIndent()
     return s
   endif
 
-  if prevline =~ '^\S.*::' && line !~ '^\s*\(\.\|->\|→\|=>\|⇒\)' && prevline !~ '^instance'
+  if prevline =~ '^\S.*\(::\|∷\)' && line !~ '^\s*\(\.\|->\|→\|=>\|⇒\)' && prevline !~ '^instance'
     " f :: String
     "	-> String
     return 0
@@ -107,14 +107,14 @@ function! GetPurescriptIndent()
     endif
   endif
 
-  let s = match(line, '\%(\\.\{-}\)\@<=->')
+  let s = match(line, '\%(\\.\{-}\)\@<=\(->\|→\)')
   if s >= 0
     " inline lambda
     return indent(v:lnum)
   endif
 
   " indent rules for -> (lambdas and case expressions)
-  let s = match(line, '->')
+  let s = match(line, '\(->\|→\)')
   let p = match(prevline, '\\')
   " protect that we are not in a type signature
   " and not in a case expression
@@ -136,7 +136,7 @@ function! GetPurescriptIndent()
     return match(prevline, '\S') + &l:shiftwidth
   endif
 
-  if prevline =~ '^\s*\(::\|∷\)\s*forall'
+  if prevline =~ '^\s*\(::\|∷\)\s*\(forall\|∀\)'
     return match(prevline, '\S') + g:purescript_indent_dot
   endif
 
