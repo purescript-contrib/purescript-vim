@@ -5,19 +5,20 @@ Notable changes to this project are documented in this file. The format is based
 ## [Unreleased]
 
 Breaking changes (😱!!!):
-  - use "-- %s" instead of "{--%s--}" for comemnts [p68][]
+  - use `-- %s` instead of `{--%s--}` for comments [p68][]
 
 New features:
-  - add vim manual (`:help purescript-vim`) [p73][]
+  - add Vim manual (`:help purescript-vim`) [p73][]
   - add setting to disable indentation (`let g:purescript_disable_indent = 1`) [p75][]
   - highlight TODO/FIXME/XXX in comments [p76][]
 
 Bugfixes:
   - docs did not reflect the code in using the `g:` prefix for indentation configuration [p73][]
+  - highlight all bicameral scripts, not just Latin ones [p85][]
 
 Other improvements:
-  - rename default branch to 'main', clarify readme, add changelog [p73][]
-  - add install instruction for vim 8 packages
+  - rename default branch to `main`, clarify readme, add changelog [p73][]
+  - add install instruction for Vim 8 packages
 
 ## [v1.0.0](https://github.com/purescript-contrib/purescript-vim/releases/tag/v1.0.0) - 2017-10-19
 
