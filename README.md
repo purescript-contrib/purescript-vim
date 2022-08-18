@@ -51,6 +51,14 @@ Save and restart (neo)vim and run `:PlugInstall`.
 
 To configure indentation in `purescript-vim` you can use the following variables:
 
+#### g:purescript_set_root
+
+if set to true, the `path` option and `K` command will be set properly.
+
+```vim
+let g:purescript_disable_indent = v:true
+```
+
 #### g:purescript_disable_indent
 
 Disable indentation altogether.
