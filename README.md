@@ -204,6 +204,17 @@ isSumEven ∷ ∀ f. Foldable ⇒ f ℤ → 𝔹
 isSumEven = (≡) 0 ∘ sumMod2
 ```
 
+## Developing
+
+Grab the suggested Git config by including with
+
+```sh-session
+$ git config --local include.path ../.gitconfig
+```
+
+This includes [`.git-blame-ignore-revs`](https://git-scm.com/docs/git-blame#Documentation/git-blame.txt---ignore-revs-fileltfilegt).
+
+
 ## Contributing
 
 You can contribute to purescript-vim in several ways:
