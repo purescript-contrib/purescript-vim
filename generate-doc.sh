@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-cat README.md | npx github:mklabs/vim-markdown-helpfile > doc/purescript-vim.txt
+npx github:mklabs/vim-markdown-helpfile < README.md > doc/purescript-vim.txt
