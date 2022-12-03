@@ -21,19 +21,19 @@ filetype plugin indent on
 
 If you have vim version 8 (`vim --version | head -n1`), you can install plugins with the native pack system:
 
-```sh
-mkdir -p ~/.vim/pack/plugins/start/
-cd ~/.vim/pack/plugins/start/
-git clone https://github.com/purescript-contrib/purescript-vim.git
+```sh-session
+$ mkdir -p ~/.vim/pack/plugins/start/
+$ cd ~/.vim/pack/plugins/start/
+$ git clone https://github.com/purescript-contrib/purescript-vim.git
 ```
 
 ### Pathogen
 
 If you are using [Pathogen][], clone this repo into your `~/.vim/bundle` directory and you are ready to go.
 
-```sh
-cd ~/.vim/bundle
-git clone https://github.com/purescript-contrib/purescript-vim.git
+```sh-session
+$ cd ~/.vim/bundle
+$ git clone https://github.com/purescript-contrib/purescript-vim.git
 ```
 ### vim-plug
 
