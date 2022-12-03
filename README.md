@@ -128,6 +128,78 @@ let g:purescript_indent_dot = 1
 	  -> Maybe (List a, a)
 ```
 
+## Unicode conceal
+
+If you wish to have some symbols concealed for their unicode equivalents, you may use these options. Each setting will conceal the following ASCII code block for an example output.
+
+```purescript
+sum :: forall a f. Foldable f => Semiring a => f a -> a
+sum = foldl (\a b -> a + b) zero
+
+sumMod2 :: forall f. Foldable f => f Int -> Int
+sumMod2 xs = mod (sum xs) 2
+
+isSumEven :: forall f. Foldable => f Int -> Boolean
+isSumEven = (==) 0 <<< sumMod2
+```
+
+### g:purescript_unicode_conceal_enable
+
+```vim
+let g:purescript_unicode_conceal_enable = 1
+```
+
+Enables concealing. Conceals as:
+
+```purescript
+sum ∷ ∀ a f. Foldable f ⇒ Semiring a ⇒ f a → a
+sum = foldl (λa b → a + b) zero
+
+sumMod2 ∷ ∀ f. Foldable f ⇒ f Int → Int
+sumMod2 xs = mod (sum xs) 2
+
+isSumEven ∷ ∀ f. Foldable ⇒ f Int → Boolean
+isSumEven = (≡) 0 ∘ sumMod2
+```
+
+### g:purescript_unicode_conceal_disable_common
+
+```vim
+let g:purescript_unicode_conceal_disable_common = 1
+```
+
+Disables concealing common symbols and just uses ones the compiler supports. Concealed as:
+
+```purescript
+sum ∷ ∀ a f. Foldable f ⇒ Semiring a ⇒ f a → a
+sum = foldl (\a b → a + b) zero
+
+sumMod2 ∷ ∀ f. Foldable f ⇒ f Int → Int
+sumMod2 xs = mod (sum xs) 2
+
+isSumEven ∷ ∀ f. Foldable ⇒ f Int → Boolean
+isSumEven = (==) 0 <<< sumMod2
+```
+
+### g:purescript_unicode_conceal_enable_discretionary
+
+```vim
+let g:purescript_unicode_conceal_enable_discretionary = 1
+```
+
+Enables discretionary symbols concealing less common symbols that deviate further from the written code. Concealed as:
+
+```purescript
+∑ ∷ ∀ a f. Foldable f ⇒ Semiring a ⇒ f a → a
+∑ = foldl (λa b → a + b) ∅
+
+sumMod2 ∷ ∀ f. Foldable f ⇒ f ℤ → ℤ
+sumMod2 xs = mod (∑ xs) 2
+
+isSumEven ∷ ∀ f. Foldable ⇒ f ℤ → 𝔹
+isSumEven = (≡) 0 ∘ sumMod2
+```
+
 ## Contributing
 
 Contributing checklist:
