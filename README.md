@@ -206,12 +206,13 @@ isSumEven = (≡) 0 ∘ sumMod2
 
 ## Contributing
 
-Contributing checklist:
+You can contribute to purescript-vim in several ways:
 
-- [ ] Opened an issue before investing a significant amount of work into changes
-- [ ] Update README.md with any new configuration options and behavior
-- [ ] Update CHANGELOG.md with the proposed changes
-- [ ] Run `generate-doc.sh` to re-generate the documentation
+1. If you encounter a problem or have a question, please open an [issue](https://github.com/purescript-contrib/purescript-vim/issues) or post to the [mailing list](https://lists.sr.ht/~toastal/purescript-vim-discuss). We’ll do our best to work with you to resolve or answer it.
+
+2. If you would like to contribute code, tests, or documentation, please read the [contributor guide](./CONTRIBUTING.md). It’s a short, helpful introduction to contributing to this library, including development instructions.
+
+3. If you have written a library, tutorial, guide, or other resource based on this package, please share it on the [PureScript Discourse](https://discourse.purescript.org/)! Writing libraries and learning resources are a great way to help this library succ:eed.
 
 [PureScript]: http://www.purescript.org
 [Pathogen]: https://github.com/tpope/vim-pathogen
