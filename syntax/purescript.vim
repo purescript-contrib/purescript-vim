@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " syntax highlighting for purescript
 "
 " Heavily modified version of the purescript syntax

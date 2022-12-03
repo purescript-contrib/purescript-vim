@@ -1,6 +1,8 @@
+scriptencoding utf-8
 " Great for those that want Unicode, but their project’s config or style guide
 " does not endorse the usage. Much of the code is based on VimL code for
 " concealing Haskell, Idris, and OCaml.
+
 if !get(g:, "purescript_unicode_conceal_enable", 1) || !has("conceal") || &enc != "utf-8"
 	finish
 endif

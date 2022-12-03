@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 setlocal comments=s1fl:{-,mb:\ \ ,ex:-},:--\ \|,:--
 setlocal commentstring=--\ %s
 setlocal include=^import

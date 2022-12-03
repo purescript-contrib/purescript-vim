@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " indentation for purescript
 "
 " Based on idris indentation
