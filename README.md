@@ -1,6 +1,6 @@
 # purescript-vim
 
-[PureScript][] language support for vim and neovim providing syntax highlighting and indentation based on based on [idris-vim][] and [haskell-vim][].
+[PureScript][] language support for Vim and Neovim providing syntax highlighting and indentation based on based on [idris-vim][] and [haskell-vim][].
 
 See [purescript-language-server][] for details on how to set up language server support for [PureScript][].
 
@@ -19,7 +19,7 @@ filetype plugin indent on
 
 ### Vim 8 packages
 
-If you have vim version 8 (`vim --version | head -n1`), you can install plugins with the native pack system:
+If you have Vim version 8 (`vim --version | head -n1`), you can install plugins with the native pack system:
 
 ```sh-session
 $ mkdir -p ~/.vim/pack/plugins/start/
@@ -37,13 +37,13 @@ $ git clone https://github.com/purescript-contrib/purescript-vim.git
 ```
 ### vim-plug
 
-If you are using [vim-plug][], add the following line in between your `plug#begin` and `plug#end` calls for your vim config file:
+If you are using [vim-plug][], add the following line in between your `plug#begin` and `plug#end` calls for your Vim config file:
 
 ```vim
 Plug 'purescript-contrib/purescript-vim'
 ```
 
-Save and restart (neo)vim and run `:PlugInstall`.
+Save and restart (Neo)Vim and run `:PlugInstall`.
 
 ## Configuration
 
@@ -130,7 +130,7 @@ let g:purescript_indent_dot = 1
 
 ## Unicode conceal
 
-If you wish to have some symbols concealed for their unicode equivalents, you may use these options. Each setting will conceal the following ASCII code block for an example output.
+If you wish to have some symbols concealed for their Unicode equivalents, you may use these options. Each setting will conceal the following ASCII code block for an example output.
 
 ```purescript
 sum :: forall a f. Foldable f => Semiring a => f a -> a
