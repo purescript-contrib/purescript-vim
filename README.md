@@ -93,8 +93,8 @@ let g:purescript_indent_in = 1
 ```
 
 ```purescript
-	let x = 0
-	>in x
+        let x = 0
+        >in x
 ```
 
 #### g:purescript_indent_where
@@ -126,10 +126,10 @@ let g:purescript_indent_dot = 1
 ```
 
 ```purescript
-	unsnoc
-	  :: forall a
-	  >. List a
-	  -> Maybe (List a, a)
+  unsnoc
+    :: forall a
+    >. List a
+    -> Maybe (List a, a)
 ```
 
 ## Unicode conceal
