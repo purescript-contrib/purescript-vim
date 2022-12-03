@@ -12,7 +12,7 @@ trim_trailing_whitespace = true
 indent_style = tab
 
 # matches other purescript-contrib projects
-[*.md]
+[*.{md,yml}]
 indent_style = space
 indent_size = 2
 

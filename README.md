@@ -214,6 +214,18 @@ $ git config --local include.path ../.gitconfig
 
 This includes [`.git-blame-ignore-revs`](https://git-scm.com/docs/git-blame#Documentation/git-blame.txt---ignore-revs-fileltfilegt).
 
+Enter Nix dev shell ([enable Flakes](https://nixos.wiki/wiki/Flakes) if needed)
+
+```sh-session
+$ nix develop
+```
+
+Or you can get an automatic shell via [`direnv`](https://direnv.net/)
+
+```sh-session
+$ echo "use flake" > .envrc
+$ direnv allow
+```
 
 ## Contributing
 
