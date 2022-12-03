@@ -1,4 +1,4 @@
-*purescript-vim.txt*    [![Maintainer: vladciobanu](https://img.shields.io/badge/maintainer-vladciobanu-lightgrey.svg)](http://github.com/vladciobanu)
+*purescript-vim.txt*    [PureScript][] language support for vim and neovim providing syntax highlighting and indentation based on based on [idris-vim][] and [haskell-vim][].
 
 |purescript-intro|    purescript-vim
 |purescript-Installation|    Installation
@@ -19,11 +19,9 @@
 
 PURESCRIPT-VIM                *purescript-intro*
 
-[![Maintainer: vladciobanu](https://img.shields.io/badge/maintainer-vladciobanu-lightgrey.svg)](http://github.com/vladciobanu)
+[PureScript][] language support for vim and neovim providing syntax highlighting and indentation based on based on [idris-vim][] and [haskell-vim][].
 
-[Purescript][] language support for vim and neovim providing syntax highlighting and indentation based on based on [idris-vim][] and [haskell-vim][].
-
-See [purescript-language-server][] for details on how to set up language server support for [Purescript][].
+See [purescript-language-server][] for details on how to set up language server support for [PureScript][].
 
 
 INSTALLATION                *purescript-Installation*
