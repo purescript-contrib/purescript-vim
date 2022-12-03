@@ -63,12 +63,14 @@
               nativeBuildInputs = with pkgs; [
                 editorconfig-checker
                 nixpkgs-fmt
+                vim-vint
               ];
             } ''
             set -euo pipefail
             cd ${self}
             editorconfig-checker | tee $out
             nixpkgs-fmt --check . | tee $out
+            vint --error **/*.vim | tee $out
           '';
         });
 
@@ -82,6 +84,7 @@
             buildInputs = with pkgs; [
               editorconfig-checker
               nixpkgs-fmt
+              vim-vint
             ];
           };
         });
