@@ -1,0 +1,17 @@
+name: Nix
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # Nix Flakes doesn’t work on shallow clones
+          fetch-depth: 0
+      - uses: cachix/install-nix-action@v18
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+      - run: echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
+      - run: nix flake check
+
