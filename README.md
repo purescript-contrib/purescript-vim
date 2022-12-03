@@ -4,6 +4,10 @@
 
 See [purescript-language-server][] for details on how to set up language server support for [PureScript][].
 
+## License
+
+This project is licensed under The 2-Clause BSD License ([BSD-2-Clause](https://opensource.org/licenses/BSD-2-Clause)) — see the LICENSE file in this project for details.
+
 ## Installation
 
 ### Manual Installation (no plugin manager)
