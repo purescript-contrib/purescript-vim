@@ -12,6 +12,7 @@ New features:
   - add setting to disable indentation (`let g:purescript_disable_indent = 1`) [p75][]
   - highlight TODO/FIXME/XXX in comments [p76][]
   - additional TODO highlighting in comments [p81][]
+  - allow folds on imports [p83][]
   - add Unicode symbol conceal (`let g:purescript_unicode_conceal_enable = 1`) [p87][]
 
 Bugfixes:
