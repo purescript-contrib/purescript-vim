@@ -70,7 +70,7 @@
             cd ${self}
             editorconfig-checker | tee $out
             nixpkgs-fmt --check . | tee $out
-            vint --error **/*.vim | tee $out
+            vint --warning **/*.vim | tee $out
           '';
         });
 
