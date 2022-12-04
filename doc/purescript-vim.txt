@@ -20,6 +20,7 @@
 |purescript-g-purescript_unicode_conceal_enable|    g:purescript_unicode_conceal_enable
 |purescript-g-purescript_unicode_conceal_disable_common|    g:purescript_unicode_conceal_disable_common
 |purescript-g-purescript_unicode_conceal_enable_discretionary|    g:purescript_unicode_conceal_enable_discretionary
+|purescript-Developing|    Developing
 |purescript-Contributing|    Contributing
 
 PURESCRIPT-VIM                *purescript-intro*
@@ -132,7 +133,7 @@ G:PURESCRIPT_INDENT_IN                *purescript-g-purescript_indent_in*
 
 >
     let x = 0
-        >in x
+            >in x
 <
 
 
@@ -168,9 +169,9 @@ G:PURESCRIPT_INDENT_DOT                *purescript-g-purescript_indent_dot*
 
 >
     unsnoc
-          :: forall a
-          >. List a
-          -> Maybe (List a, a)
+        :: forall a
+        >. List a
+        -> Maybe (List a, a)
 <
 
 
@@ -247,6 +248,30 @@ Enables discretionary symbols concealing less common symbols that deviate furthe
 
     isSumEven ∷ ∀ f. Foldable ⇒ f ℤ → 𝔹
     isSumEven = (≡) 0 ∘ sumMod2
+<
+
+
+DEVELOPING                *purescript-Developing*
+
+Grab the suggested Git config by including with
+
+>
+    $ git config --local include.path ../.gitconfig
+<
+
+This includes [`.git-blame-ignore-revs`](https://git-scm.com/docs/git-blame#Documentation/git-blame.txt---ignore-revs-fileltfilegt).
+
+Enter Nix dev shell ([enable Flakes](https://nixos.wiki/wiki/Flakes) if needed)
+
+>
+    $ nix develop
+<
+
+Or you can get an automatic shell via [`direnv`](https://direnv.net/)
+
+>
+    $ echo "use flake" > .envrc
+    $ direnv allow
 <
 
 
