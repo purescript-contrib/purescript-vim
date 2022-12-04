@@ -6,7 +6,7 @@ scriptencoding utf-8
 "
 " author: raichoo (raichoo@googlemail.com)
 
-if exists("b:current_syntax")
+if exists('b:current_syntax')
 	finish
 endif
 
@@ -154,7 +154,7 @@ syn match purescriptTypeAliasStart "^type\s\+\([[:upper:]]\w*\)" contained
 " String
 syn match purescriptChar "'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'"
 syn region purescriptString start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=@Spell
-syn region purescriptMultilineString start=+"""+ end=+"""+ fold contains=@Spell
+syn region purescriptMultilineString start=+'"'+ end=+'"'+ fold contains=@Spell
 
 " Comment
 syn match purescriptLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=purescriptCommentTodo,@Spell
@@ -217,4 +217,4 @@ highlight def link purescriptFunction Function
 highlight def link purescriptType Type
 highlight def link purescriptComment Comment
 
-let b:current_syntax = "purescript"
+let b:current_syntax = 'purescript'

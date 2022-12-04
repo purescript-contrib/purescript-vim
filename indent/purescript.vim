@@ -54,7 +54,7 @@ setlocal indentexpr=GetPurescriptIndent()
 setlocal indentkeys=!^F,o,O,},=where,=in,=::,=∷,=->,=→,==>,=⇒
 
 function! s:GetSynStack(lnum, col)
-	return map(synstack(a:lnum, a:col), { key, val -> synIDattr(val, "name") })
+	return map(synstack(a:lnum, a:col), { key, val -> synIDattr(val, 'name') })
 endfunction
 
 function! GetPurescriptIndent()
@@ -96,7 +96,7 @@ function! GetPurescriptIndent()
 	endif
 
 	let s = match(prevline, '[[:alnum:][:blank:]]\@<=|[[:alnum:][:blank:]$]')
-	if s >= 0 && prevline !~ '^class\>' && index(s:GetSynStack(v:lnum - 1, s), "purescriptFunctionDecl") == -1
+	if s >= 0 && prevline !~ '^class\>' && index(s:GetSynStack(v:lnum - 1, s), 'purescriptFunctionDecl') == -1
 		" ident pattern guards but not if we are in a type declaration
 		" what we detect using syntax groups
 		if prevline =~ '|\s*otherwise\>'
@@ -119,8 +119,8 @@ function! GetPurescriptIndent()
 	let p = match(prevline, '\\')
 	" protect that we are not in a type signature
 	" and not in a case expression
-	if s >= 0 && index(s:GetSynStack(s == 0 ? v:lnum - 1 : v:lnum, max([1, s])), "purescriptFunctionDecl") == -1
-		\ && p >= 0 &&  index(s:GetSynStack(v:lnum - 1, p), "purescriptString") == -1
+	if s >= 0 && index(s:GetSynStack(s == 0 ? v:lnum - 1 : v:lnum, max([1, s])), 'purescriptFunctionDecl') == -1
+		\ && p >= 0 &&  index(s:GetSynStack(v:lnum - 1, p), 'purescriptString') == -1
 		return p
 	endif
 
@@ -174,7 +174,7 @@ function! GetPurescriptIndent()
 	endif
 
 	if prevline =~ '[{([][^})\]]\+$'
-		echom "return 1"
+		echom 'return 1'
 		return match(prevline, '[{([]')
 	endif
 
