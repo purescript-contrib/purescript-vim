@@ -62,19 +62,19 @@ function! GetPurescriptIndent()
 	let prevline = getline(v:lnum - 1)
 	let line = getline(v:lnum)
 
-	if line =~ '^\s*\<where\>'
+	if line =~# '^\s*\<where\>'
 		let s = indent(v:lnum - 1)
 		return max([s, &l:shiftwidth])
 	endif
 
-	if line =~ '^\s*\<in\>'
+	if line =~# '^\s*\<in\>'
 		let n = v:lnum
 		let s = 0
 
 		while s <= 0 && n > 0
 			let n = n - 1
 			let s = match(getline(n), '\<let\>')
-			if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') != -1
+			if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') !=? -1
 	let s = -1
 			endif
 		endwhile
@@ -89,17 +89,17 @@ function! GetPurescriptIndent()
 		return s
 	endif
 
-	if prevline =~ '^\S.*\(::\|∷\)' && line !~ '^\s*\(\.\|->\|→\|=>\|⇒\)' && prevline !~ '^instance'
+	if prevline =~# '^\S.*\(::\|∷\)' && line !~# '^\s*\(\.\|->\|→\|=>\|⇒\)' && prevline !~# '^instance'
 		" f :: String
 		"	-> String
 		return 0
 	endif
 
 	let s = match(prevline, '[[:alnum:][:blank:]]\@<=|[[:alnum:][:blank:]$]')
-	if s >= 0 && prevline !~ '^class\>' && index(s:GetSynStack(v:lnum - 1, s), 'purescriptFunctionDecl') == -1
+	if s >= 0 && prevline !~# '^class\>' && index(s:GetSynStack(v:lnum - 1, s), 'purescriptFunctionDecl') == -1
 		" ident pattern guards but not if we are in a type declaration
 		" what we detect using syntax groups
-		if prevline =~ '|\s*otherwise\>'
+		if prevline =~# '|\s*otherwise\>'
 			return indent(search('^\s*\k', 'bnW'))
 			" somehow this pattern does not work :/
 			" return indent(search('^\(\s*|\)\@!', 'bnW'))
@@ -124,20 +124,20 @@ function! GetPurescriptIndent()
 		return p
 	endif
 
-	if prevline =~ '^\S'
+	if prevline =~# '^\S'
 		" start typing signature, function body, data & newtype on next line
 		return &l:shiftwidth
 	endif
 
-	if ppline =~ '^\S' && prevline =~ '^\s*$'
+	if ppline =~# '^\S' && prevline =~# '^\s*$'
 		return 0
 	endif
 
-	if line =~ '^\s*\%(::\|∷\)'
+	if line =~# '^\s*\%(::\|∷\)'
 		return match(prevline, '\S') + &l:shiftwidth
 	endif
 
-	if prevline =~ '^\s*\(::\|∷\)\s*\(forall\|∀\)'
+	if prevline =~# '^\s*\(::\|∷\)\s*\(forall\|∀\)'
 		return match(prevline, '\S') + g:purescript_indent_dot
 	endif
 
@@ -145,13 +145,13 @@ function! GetPurescriptIndent()
 	let r = match(prevline, '^\s*\zs\.')
 	if s >= 0 || r >= 0
 		if s >= 0
-			if line !~ '^\s*\%(::\|∷\|=>\|⇒\|->\|→\)' && line !~ '^\s*$'
+			if line !~# '^\s*\%(::\|∷\|=>\|⇒\|->\|→\)' && line !~# '^\s*$'
 	return s - 2
 			else
 	return s
 			endif
 		elseif r >= 0
-			if line !~ '^\s\%(::\|∷\|=>\|⇒\|->\|→\)'
+			if line !~# '^\s\%(::\|∷\|=>\|⇒\|->\|→\)'
 	return r - g:purescript_indent_dot
 			else
 	return r
@@ -159,7 +159,7 @@ function! GetPurescriptIndent()
 		endif
 	endif
 
-	if prevline =~ '[!#$%&*+./<>?@\\^~-]\s*$'
+	if prevline =~# '[!#$%&*+./<>?@\\^~-]\s*$'
 		let s = match(prevline, '=')
 		if s > 0
 			return s + &l:shiftwidth
@@ -173,7 +173,7 @@ function! GetPurescriptIndent()
 		endif
 	endif
 
-	if prevline =~ '[{([][^})\]]\+$'
+	if prevline =~# '[{([][^})\]]\+$'
 		echom 'return 1'
 		return match(prevline, '[{([]')
 	endif
@@ -197,7 +197,7 @@ function! GetPurescriptIndent()
 	if s > 0
 		" this rule ensures that using `=` in visual mode will correctly indent
 		" `if then else`, but it does not handle lines after `then` and `else`
-		if line =~ '\<\%(then\|else\)\>'
+		if line =~# '\<\%(then\|else\)\>'
 			return match(getline(s), '\<if\>') + &l:shiftwidth
 		endif
 	endif
@@ -214,10 +214,10 @@ function! GetPurescriptIndent()
 
 	let s = match(prevline, '[{([]\s*$')
 	if s >= 0 && index(s:GetSynStack(v:lnum - 1, s), 'purescriptString') == -1
-		return match(prevline, '\S') + (line !~ '^\s*[})]]' ? 0 : &l:shiftwidth)
+		return match(prevline, '\S') + (line !~# '^\s*[})]]' ? 0 : &l:shiftwidth)
 	endif
 
-	if prevline =~ '^class'
+	if prevline =~# '^class'
 		return &l:shiftwidth
 	endif
 
@@ -251,7 +251,7 @@ function! GetPurescriptIndent()
 		return match(prevline, '\<case\>') + g:purescript_indent_case
 	endif
 
-	if prevline =~ '^\s*\<\data\>\s\+\S\+\s*$'
+	if prevline =~# '^\s*\<\data\>\s\+\S\+\s*$'
 		return match(prevline, '\<data\>') + &l:shiftwidth
 	endif
 
