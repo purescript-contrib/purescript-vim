@@ -1,3 +1,6 @@
 scriptencoding utf-8
 
-au BufNewFile,BufRead *.purs setf purescript
+augroup filetype_purescript
+	autocmd!
+	autocmd BufNewFile,BufRead *.purs setf purescript
+augroup END
