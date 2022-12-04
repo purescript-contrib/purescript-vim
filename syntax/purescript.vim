@@ -130,7 +130,7 @@ syn match purescriptOperator "\([-!#$%&\*\+/<=>\?@\\^|~:]\|\<_\>\)"
 syn match purescriptOperatorType "\%(\<instance\>.*\)\@40<!\(::\|∷\)"
 	\ nextgroup=purescriptForall,purescriptType skipwhite skipnl skipempty
 syn match purescriptOperatorFunction "\(->\|<-\|[\\→←]\)"
-syn match purescriptOperatorTypeSig "\(->\|<-\|=>\|<=\|::\|[∷∀→←⇒⇐]\)" contained
+syn match purescriptOperatorTypeSig "\(->\|<-\|=>\|<=\|\~>\|::\|[∷∀→←⇒⇐↝]\)" contained
 	\ nextgroup=purescriptType skipwhite skipnl skipempty
 
 " Type definition
