@@ -84,6 +84,7 @@
             buildInputs = with pkgs; [
               editorconfig-checker
               nixpkgs-fmt
+              nodejs # for npx in generate-doc.sh
               vim-vint
             ];
           };
