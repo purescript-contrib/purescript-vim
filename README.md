@@ -1,5 +1,7 @@
 # purescript-vim
 
+[![Maintainer: toastal](https://img.shields.io/badge/maintainer-toastal-teal.svg)](https://github.com/toastal)
+
 [PureScript][] language support for Vim and Neovim providing syntax highlighting and indentation based on based on [idris-vim][] and [haskell-vim][].
 
 See [purescript-language-server][] for details on how to set up language server support for [PureScript][].
