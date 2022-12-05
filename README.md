@@ -231,7 +231,7 @@ $ direnv allow
 
 You can contribute to purescript-vim in several ways:
 
-1. If you encounter a problem or have a question, please open an [issue](https://github.com/purescript-contrib/purescript-vim/issues) or post to the [mailing list](https://lists.sr.ht/~toastal/purescript-vim-discuss). We’ll do our best to work with you to resolve or answer it.
+1. If you encounter a problem or have a question, please open an [issue](https://github.com/purescript-contrib/purescript-vim/issues) or post to the [mailing list](https://lists.sr.ht/~toastal/purescript-vim). We’ll do our best to work with you to resolve or answer it.
 
 2. If you would like to contribute code, tests, or documentation, please read the [contributor guide](./CONTRIBUTING.md). It’s a short, helpful introduction to contributing to this library, including development instructions.
 

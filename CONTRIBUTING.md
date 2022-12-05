@@ -6,11 +6,11 @@ Every library in the Contributors organization shares a simple handbook that hel
 
 ## Preparing a pull request or patch
 
-[Pull requests](https://github.com/purescript-contrib/purescript-vim/pulls) may be opened on the primary Git forge. If you do not have a Microsoft GitHub account or would prefer, there is also a [mailing list](https://lists.sr.ht/~toastal/purescript-vim-devel) that can be used with [`git send-email`](https://git-send-email.io).
+[Pull requests](https://github.com/purescript-contrib/purescript-vim/pulls) may be opened on the primary Git forge. If you do not have a Microsoft GitHub account or would prefer, there is also a [mailing list](https://lists.sr.ht/~toastal/purescript-vim) that can be used with [`git send-email`](https://git-send-email.io).
 
 Patches/pull request checklist:
 
-- [ ] Opened an [issue](https://github.com/purescript-contrib/purescript-aff/issues) or posted to the [discussion mailing list](https://lists.sr.ht/~toastal/purescript-vim-discuss) before investing a significant amount of work into changes
+- [ ] Opened an [issue](https://github.com/purescript-contrib/purescript-aff/issues) or posted to the [mailing list](https://lists.sr.ht/~toastal/purescript-vim) before investing a significant amount of work into changes
 - [ ] Update README.md with any new configuration options and behavior
 - [ ] Update CHANGELOG.md with the proposed changes
 - [ ] Run `./generate-doc.sh` to re-generate the documentation (requires [`npx`](https://www.npmjs.com/package/npx) which can be gotten from Nix shell)
