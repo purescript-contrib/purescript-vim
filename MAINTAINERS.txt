@@ -1,0 +1,9 @@
+Currently active maintainers
+----------------------------
+
+toastal
+E-mail: toastal@posteo.net
+PGP fingerprint: 7944 74B7 D236 DAB9 C9EF  E7F9 5CCE 6F14 66D4 7C9E
+GitHub ID: 561087
+Matrix: @toastal:matrix.org
+IRC: @toastal:libera.chat
