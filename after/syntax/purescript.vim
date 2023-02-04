@@ -24,7 +24,7 @@ syntax keyword purescriptNiceOperator exists conceal cchar=∃
 	\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
 
 if !get(g:, 'purescript_unicode_conceal_disable_common', 0)
-	syntax match purescriptNiceOperator "\\\ze[[:alpha:][:space:]_([]" conceal cchar=λ
+	syntax match purescriptNiceOperator "\/\@<!\\\ze[[:alpha:][:space:]_([]" conceal cchar=λ
 	syntax match purescriptNiceOperator "\~>" conceal cchar=↝
 		\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
 	syntax match purescriptNiceOperator '<<<' conceal cchar=∘
