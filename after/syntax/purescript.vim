@@ -14,7 +14,7 @@ syntax match purescriptNiceOperator '<-' conceal cchar=←
 	\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
 syntax match purescriptNiceOperator '=>' conceal cchar=⇒
 	\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
-syntax match purescriptNiceOperator '<=\ze[^<]' conceal cchar=⇐
+syntax match purescriptNiceOperator "<=\ze[^<]" conceal cchar=⇐
 	\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
 syntax match purescriptNiceOperator '::' conceal cchar=∷
 	\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
@@ -24,15 +24,15 @@ syntax keyword purescriptNiceOperator exists conceal cchar=∃
 	\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
 
 if !get(g:, 'purescript_unicode_conceal_disable_common', 0)
-	syntax match purescriptNiceOperator '\\\ze[[:alpha:][:space:]_([]' conceal cchar=λ
+	syntax match purescriptNiceOperator "\\\ze[[:alpha:][:space:]_([]" conceal cchar=λ
 	syntax match purescriptNiceOperator "\~>" conceal cchar=↝
 		\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
 	syntax match purescriptNiceOperator '<<<' conceal cchar=∘
 	syntax match purescriptNiceOperator '==' conceal cchar=≡
 	syntax match purescriptNiceOperator '/=' conceal cchar=≠
 	" deals with Kliesli operator false positives
-	syntax match purescriptNiceOperator '<=\ze[^<]' conceal cchar=≤
-	syntax match purescriptNiceOperator '>=\ze[^>]' conceal cchar=≥
+	syntax match purescriptNiceOperator "<=\ze[^<]" conceal cchar=≤
+	syntax match purescriptNiceOperator ">=\ze[^>]" conceal cchar=≥
 endif
 
 " These have a general meaning in mathematics; nothing in this block should be
@@ -42,8 +42,8 @@ if get(g:, 'purescript_unicode_conceal_enable_discretionary', 0)
 	syntax match purescriptNiceOperator '\<product\>' conceal cchar=∏
 	syntax match purescriptNiceOperator '\<sqrt\>' conceal cchar=√
 	syntax match purescriptNiceOperator '\<not\>' conceal cchar=¬
-	syntax match purescriptNiceOperator '||\ze[[:alpha:][:space:]_([]' conceal cchar=∨
-	syntax match purescriptNiceOperator '&&\ze[[:alpha:][:space:]_([]' conceal cchar=∧
+	syntax match purescriptNiceOperator "||\ze[[:alpha:][:space:]_([]" conceal cchar=∨
+	syntax match purescriptNiceOperator "&&\ze[[:alpha:][:space:]_([]" conceal cchar=∧
 	syntax match purescriptNiceOperator '`elem`' conceal cchar=∈
 	syntax match purescriptNiceOperator '`notElem`' conceal cchar=∉
 	syntax match purescriptNiceOperator '`union`' conceal cchar=∪
