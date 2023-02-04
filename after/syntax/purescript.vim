@@ -20,8 +20,6 @@ syntax match purescriptNiceOperator '::' conceal cchar=∷
 	\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
 syntax keyword purescriptNiceOperator forall conceal cchar=∀
 	\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
-syntax keyword purescriptNiceOperator exists conceal cchar=∃
-	\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
 
 if !get(g:, 'purescript_unicode_conceal_disable_common', 0)
 	syntax match purescriptNiceOperator "\/\@<!\\\ze[[:alpha:][:space:]_([]" conceal cchar=λ
@@ -38,6 +36,8 @@ endif
 " These have a general meaning in mathematics; nothing in this block should be
 " for ‘fun’ or ‘cute’. Perhaps that’s more suited for a new block or extension…
 if get(g:, 'purescript_unicode_conceal_enable_discretionary', 0)
+	syntax keyword purescriptNiceOperator exists conceal cchar=∃
+		\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
 	syntax match purescriptNiceOperator '\<sum\>' conceal cchar=∑
 	syntax match purescriptNiceOperator '\<product\>' conceal cchar=∏
 	syntax match purescriptNiceOperator '\<sqrt\>' conceal cchar=√
