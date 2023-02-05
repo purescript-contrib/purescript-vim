@@ -19,6 +19,7 @@ Bugfixes:
   - docs did not reflect the code in using the `g:` prefix for indentation configuration [p73][]
   - some Unicode characters were not accounted for for the indentation [p84][]
   - highlight all bicameral scripts, not just Latin ones [p85][]
+  - remove unnecessary aug[roup] use in ftdetct [p91][]
 
 Other improvements:
   - rename default branch to `main`, clarify readme, add changelog [p73][]
