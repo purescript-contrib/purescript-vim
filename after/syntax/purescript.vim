@@ -3,7 +3,7 @@ scriptencoding utf-8
 " does not endorse the usage. Much of the code is based on VimL code for
 " concealing Haskell, Idris, and OCaml.
 
-if !get(g:, 'purescript_unicode_conceal_enable', 1) || !has('conceal') || &encoding !=? 'utf-8'
+if !get(g:, 'purescript_unicode_conceal_enable', 0) || !has('conceal') || &encoding !=? 'utf-8'
 	finish
 endif
 
@@ -21,7 +21,7 @@ syntax match purescriptNiceOperator '::' conceal cchar=∷
 syntax keyword purescriptNiceOperator forall conceal cchar=∀
 	\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
 
-if !get(g:, 'purescript_unicode_conceal_disable_common', 0)
+if !get(g:, 'purescript_unicode_conceal_disable_common', 1)
 	syntax match purescriptNiceOperator "\/\@<!\\\ze[[:alpha:][:space:]_([]" conceal cchar=λ
 	syntax match purescriptNiceOperator "\~>" conceal cchar=↝
 		\ containedin=purescriptTypeExport,purescriptConstructorDecl,purescriptClassDecl,purescriptFunctionDecl,purescriptData,purescriptNewtype,purescriptTypeAlias,purescriptOperatorType
